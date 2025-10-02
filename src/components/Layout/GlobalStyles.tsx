@@ -66,11 +66,4 @@ export const GlobalStyles = styled.createGlobalStyle`
     display: block;
     margin-right: 5rem;
   }
-
-  .not_complete {
-    display: none;
-  }
-
-  .complete {
-  }
 `;
