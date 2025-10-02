@@ -16,7 +16,7 @@ import { Div } from '../Featured/styles';
 import { imageVariants } from '../Featured';
 import { useIsMobile } from '../../../../libs/useIsMobile';
 import financial_freedom_banner from '../../../../public/images/financial_freedom_banner.png';
-import freedom_mobile_banner from '../../../../public/images/freedom_mobile_banner.png';
+/* import freedom_mobile_banner from '../../../../public/images/freedom_mobile_banner.png'; */
 import {
   desktopBriefNotePhrase,
   desktopHeaderPhrase,
@@ -54,11 +54,11 @@ const FinancialFreedom = () => {
             whileInView="visible"
             viewport={{ amount: 0.25, once: true }}
           >
-            {isMobile ? (
-              <Image src={freedom_mobile_banner} alt="banner_img" fill />
+             {isMobile ? (
+              <Image src={financial_freedom_banner} alt="banner_img" fill />
             ) : (
               <Image src={financial_freedom_banner} alt="banner_img" fill />
-            )}
+            )} 
           </Div>
         </BannerCtn>
         <Edges>

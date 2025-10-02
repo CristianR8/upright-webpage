@@ -1,14 +1,14 @@
 import { StaticImageData } from 'next/image';
-import robert_fox from '../../../../public/images/robert_fox.png';
+/* import robert_fox from '../../../../public/images/robert_fox.png';
 import cameron_williamson from '../../../../public/images/cameron_williamson.png';
-import esther_howard from '../../../../public/images/esther_howard.png';
+import esther_howard from '../../../../public/images/esther_howard.png'; */
 
 export type Props = {
   testimony: string;
   person: string;
   avatar: StaticImageData;
 };
-
+/* 
 export const testimonials = [
   {
     testimony:
@@ -40,6 +40,6 @@ export const testimonials = [
     person: 'Robert Fox',
     avatar: robert_fox,
   },
-];
+]; */
 
 export const desktopHeaderPhrase = ['Join over 3 million', 'members'];

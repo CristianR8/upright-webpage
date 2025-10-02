@@ -2,9 +2,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Edge, Edges, Title } from '../FinancialFreedom/styles';
-import lola_card from '../../../../public/images/lola_card.png';
+/* import lola_card from '../../../../public/images/lola_card.png';
 import orange_card from '../../../../public/images/orange_card.png';
-import terry_card from '../../../../public/images/terry_card.png';
+import terry_card from '../../../../public/images/terry_card.png'; */
 import {
   Wrapper,
   Inner,
@@ -48,7 +48,7 @@ const IntroSection = () => {
             )}
           </HeaderMainText>
         </Header>
-        <CardsContainer>
+        {/* <CardsContainer>
           <LeftImage
             className={isHovered ? 'active' : ''}
             src={orange_card}
@@ -65,7 +65,7 @@ const IntroSection = () => {
             src={terry_card}
             alt="terry card"
           />
-        </CardsContainer>
+        </CardsContainer> */}
         <Edges>
           {edges.map((edge, i) => (
             <Edge key={i}>

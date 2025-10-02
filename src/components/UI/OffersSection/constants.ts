@@ -2,7 +2,7 @@ import service1 from '../../../../public/services/1.jpeg';
 import service2 from '../../../../public/services/2.webp';
 import service3 from '../../../../public/services/3.webp';
 import service4 from '../../../../public/services/4.webp';
-import service5 from '../../../../public/services/5.jpg';
+import service5 from '../../../../public/services/5.webp';
 import service6 from '../../../../public/services/6.jpg';
 import service7 from '../../../../public/services/7.webp';
 import service8 from '../../../../public/services/8.webp';
