@@ -1,0 +1,48 @@
+# ------------------------------
+# Node.js / Next.js Git Ignore
+# ------------------------------
+
+# Dependencies
+node_modules/
+
+# Build / output
+.next/
+out/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files (secrets)
+.env
+.env.*
+!.env.example
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Coverage / tests
+coverage/
+*.lcov
+
+# Misc
+*.tgz
+*.lock-wscript
+
+# Optional: local database / cache
+.cache/
+.tmp/
+
+# ------------------------------
+# End of Git Ignore Pack
+# ------------------------------
