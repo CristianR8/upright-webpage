@@ -25,13 +25,13 @@ export const Span = styled(motion.span)`
   display: inline-block;
   white-space: nowrap;
   color: var(--white);
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-size: 0.95rem;
+  font-weight: 500;
 
   @media (max-width: 768px) {
-    color: var(--Background);
-    font-size: 1.75rem;
-    font-weight: 500;
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 600;
   }
 `;
 

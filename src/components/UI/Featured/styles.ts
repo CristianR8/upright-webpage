@@ -8,23 +8,20 @@ export const Inner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 6.25rem auto 0;
+  margin: 6.25rem auto;
   max-width: 1440px;
   width: 90%;
 
   h2 {
     color: var(--white);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 500;
     text-transform: uppercase;
-    margin-top: 6.5rem;
   }
 
   @media (max-width: 768px) {
-    margin-top: 5rem;
-
     h2 {
-      font-size: 1rem;
+      font-size: 5rem;
       font-weight: 500;
       margin-top: 3.75rem;
     }

@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
-  padding: 1rem 0;
-  background-color: var(--indigo);
+  padding: 0.6rem 0; /* reduced header height */
+  background-color: #000;
   border-bottom: 0.5px solid #3d3d3d;
 
   @media (max-width: 768px) {
-    padding: 0.75rem 0;
+    padding: 0.5rem 0; /* reduced on mobile as well */
   }
 `;
 
@@ -53,7 +53,7 @@ export const BurgerMenu = styled.div`
 
     div {
       position: absolute;
-      background: var(--indigo);
+      background: #000;
       width: '250px';
       height: '300px';
       border-radius: 25px;
@@ -80,8 +80,8 @@ export const Nav = styled.div`
 
   a {
     color: var(--white);
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 1.125rem; /* larger nav text */
+    font-weight: 500;
   }
 
   @media (max-width: 768px) {

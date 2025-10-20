@@ -12,7 +12,6 @@ import {
 } from './styles';
 import upright_logo from '../../../../public/svgs/upright.svg';
 import ic_bars from '../../../../public/svgs/ic_bars.svg';
-import { GetStartedButton } from '@/components';
 import AnimatedLink from '@/components/Common/AnimatedLink';
 import { useCallback, useState } from 'react';
 import { motion } from 'framer-motion';

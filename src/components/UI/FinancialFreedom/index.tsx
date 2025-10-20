@@ -1,22 +1,22 @@
-'use client';
-import Image from 'next/image';
+"use client";
+import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   Wrapper,
   Inner,
   Header,
   BannerCtn,
   Edges,
-  Edge,
+  EdgeBase,
   Title,
   BriefNote,
-} from './styles';
-import MaskText from '@/components/Common/MaskText';
-import RevealCover from '@/components/Common/RevealCover';
-import { Div } from '../Featured/styles';
-import { imageVariants } from '../Featured';
-import { useIsMobile } from '../../../../libs/useIsMobile';
-import financial_freedom_banner from '../../../../public/images/financial_freedom_banner.png';
-/* import freedom_mobile_banner from '../../../../public/images/freedom_mobile_banner.png'; */
+} from "./styles";
+import MaskText from "@/components/Common/MaskText";
+import RevealCover from "@/components/Common/RevealCover";
+import { Div } from "../Featured/styles";
+import { imageVariants } from "../Featured";
+import { useIsMobile } from "../../../../libs/useIsMobile";
+import financial_freedom_banner from "../../../../public/images/financial_freedom_banner.png";
 import {
   desktopBriefNotePhrase,
   desktopHeaderPhrase,
@@ -25,7 +25,24 @@ import {
   mobileBriefNotePhrase,
   mobileHeaderPhrase,
   mobileParagraphPhrase,
-} from './constants';
+} from "./constants";
+
+const Edge = motion(EdgeBase);
+
+/** subtle lift-in + float animation for edge cards */
+const edgeVariants = {
+  hidden: { opacity: 0, y: 16, scale: 0.98 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: 0.08 * i,
+      duration: 0.5,
+      ease: [0.22, 0.61, 0.36, 1],
+    },
+  }),
+};
 
 const FinancialFreedom = () => {
   const isMobile = useIsMobile();
@@ -42,10 +59,31 @@ const FinancialFreedom = () => {
           ) : (
             <>
               <MaskText phrases={desktopHeaderPhrase} tag="h1" />
-              <MaskText phrases={desktopParagraphPhrase} tag="p" />
+              {/* <MaskText phrases={desktopParagraphPhrase} tag="p" /> */}
             </>
           )}
         </Header>
+
+        <Edges>
+          {edges.map((edge, i) => (
+            <Edge
+              key={i}
+              custom={i}
+              variants={edgeVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ amount: 0.4, once: true }}
+              whileHover="hover"
+            >
+              <Title>
+                <Image src={edge.icon} alt="icon" />
+                <MaskText phrases={[edge.point]} tag="h3" />
+              </Title>
+              <MaskText phrases={[edge.details]} tag="p" />
+            </Edge>
+          ))}
+        </Edges>
+
         <BannerCtn>
           <RevealCover />
           <Div
@@ -54,32 +92,10 @@ const FinancialFreedom = () => {
             whileInView="visible"
             viewport={{ amount: 0.25, once: true }}
           >
-             {isMobile ? (
-              <Image src={financial_freedom_banner} alt="banner_img" fill />
-            ) : (
-              <Image src={financial_freedom_banner} alt="banner_img" fill />
-            )} 
+            <Image src={financial_freedom_banner} alt="banner_img" fill />
           </Div>
         </BannerCtn>
-        <Edges>
-          {edges.map((edge, i) => (
-            <Edge key={i}>
-              <Title>
-                <Image src={edge.icon} alt="icon" />
-                <MaskText phrases={new Array(edge.point)} tag="h3" />
-              </Title>
-              <MaskText phrases={new Array(edge.details)} tag="p" />
-            </Edge>
-          ))}
-        </Edges>
       </Inner>
-      <BriefNote>
-        {isMobile ? (
-          <MaskText phrases={mobileBriefNotePhrase} tag="p" />
-        ) : (
-          <MaskText phrases={desktopBriefNotePhrase} tag="p" />
-        )}
-      </BriefNote>
     </Wrapper>
   );
 };
