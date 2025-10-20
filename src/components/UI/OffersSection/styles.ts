@@ -6,8 +6,8 @@ import grid_background from '../../../../public/images/offer_card_grid_1.png';
 export const Wrapper = styled.section`
   position: relative;
   background:
-    radial-gradient(1200px 800px at 15% 85%, var(--blue) , transparent 75%),
-    radial-gradient(900px 700px at 85% 40%, var(--blue) , transparent 80%),
+    radial-gradient(1200px 800px at 15% 85%, var(--blue), transparent 75%),
+    radial-gradient(900px 700px at 85% 40%, var(--blue), transparent 80%),
     linear-gradient(180deg, var(--Background) 0%, var(--Background) 95%);
   color: var(--white);
   overflow: hidden;
@@ -71,6 +71,11 @@ export const TextCtn = styled.div`
   backdrop-filter: blur(12px);
   border-top: 1px solid rgba(58, 193, 192, 0.25);
 
+  /* hidden by default (desktop) */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+
   h2 {
     font-size: 1.75rem;
     font-weight: 500;
@@ -86,6 +91,9 @@ export const TextCtn = styled.div`
   }
 
   @media (max-width: 768px) {
+    /* always visible on mobile */
+    opacity: 1;
+    transform: none;
     padding: 1.5rem;
     h2 {
       font-size: 1.5rem;
@@ -127,7 +135,6 @@ export const OfferCard = styled.div`
       rgba(14, 1, 66, 0.6) 45%,
       rgba(10, 10, 10, 0.92) 100%
     );
-
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -158,6 +165,7 @@ export const OfferCard = styled.div`
     transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
+  /* hover reveal */
   &:hover {
     transform: translateY(-10px);
     box-shadow:
@@ -169,6 +177,8 @@ export const OfferCard = styled.div`
     }
 
     ${TextCtn} {
+      opacity: 1;
+      transform: translateY(0);
       background: rgba(14, 1, 66, 0.85);
       border-top-color: rgba(58, 193, 192, 0.6);
     }
@@ -188,27 +198,6 @@ export const CardImage = styled(Image)`
   z-index: 0;
 `;
 
-export const RocketStage = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  height: 360px; /* tweak height as you like */
-  overflow: hidden;
-
-  canvas {
-    position: absolute;
-    inset: 0;
-    width: 100% !important;
-    height: 100% !important;
-    display: block;
-  }
-
-  @media (max-width: 768px) {
-    height: 280px;
-  }
-`;
-
 export const PartnerBadge = styled.div`
   position: absolute;
   left: 50%;
@@ -222,19 +211,16 @@ export const PartnerBadge = styled.div`
   background: rgba(14, 1, 66, 0.75);
   border: 1px solid var(--indigo);
   backdrop-filter: blur(12px);
-  box-shadow: 0 18px 40px var(--cyan);
+  box-shadow: 0 18px 40px var(--blue);
 
   img {
-    width: 280px;
+    width: 240px;
     height: auto;
   }
 
   @media (max-width: 768px) {
-    bottom: 1.5rem;
-    padding: 0.5rem 1.25rem;
-
     img {
-      width: 110px;
+      width: 150px;
     }
   }
 `;

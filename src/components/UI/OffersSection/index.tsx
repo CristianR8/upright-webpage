@@ -22,18 +22,19 @@ import badgeLight from '../../../../public/partner/Badge_light.svg';
 
 const OffersSection = () => {
   const isMobile = useIsMobile();
+
   return (
     <Wrapper>
       <Inner>
         <Header>
           <MaskText phrases={desktopHeaderPhrases} tag="h1" />
-
           {isMobile ? (
             <MaskText phrases={mobileParagraphPhrase} tag="p" />
           ) : (
             <MaskText phrases={desktopParagraphPhrase} tag="p" />
           )}
         </Header>
+
         {Array.from({ length: Math.ceil(offers.length / 2) }, (_, idx) =>
           offers.slice(idx * 2, idx * 2 + 2)
         ).map((pair, index) => (
@@ -57,6 +58,7 @@ const OffersSection = () => {
           </Offers>
         ))}
       </Inner>
+
       <PartnerBadge>
         <Image
           src={badgeLight}

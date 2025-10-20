@@ -14,14 +14,14 @@ export const Inner = styled.div`
 
   h2 {
     color: var(--white);
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: 500;
     text-transform: uppercase;
   }
 
   @media (max-width: 768px) {
     h2 {
-      font-size: 5rem;
+      font-size: 2rem;
       font-weight: 500;
       margin-top: 3.75rem;
     }

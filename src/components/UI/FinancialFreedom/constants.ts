@@ -20,13 +20,11 @@ export const desktopBriefNotePhrase = [
 
 // For mobile
 export const mobileHeaderPhrase = [
-  'Analizamos tu realidad',
-  'para crear estrategias',
-  'alineadas a tus metas',
+  'Nuestro trabajo inicia con',
+  'un análisis detallado',
 ];
 export const mobileParagraphPhrase = [
-  'Evaluamos cada detalle de tu marca, persona o empresa para entender su momento actual.',
-  'Luego trazamos estrategias personalizadas que ejecutamos con eficiencia y coherencia.',
+  
 ];
 
 export const mobileBriefNotePhrase = [

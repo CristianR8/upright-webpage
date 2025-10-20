@@ -49,7 +49,7 @@ export const BurgerMenu = styled.div`
 
   @media (max-width: 768px) {
     display: block;
-    padding: 0.5rem;
+    padding: 0.25rem;
 
     div {
       position: absolute;
@@ -65,6 +65,8 @@ export const BurgerMenu = styled.div`
       position: relative;
       z-index: 2;
       object-fit: cover;
+      width: clamp(1.5rem, 12vw, 2rem);
+      height: auto;
     }
   }
 `;

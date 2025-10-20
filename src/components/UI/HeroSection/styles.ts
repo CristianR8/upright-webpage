@@ -50,6 +50,9 @@ export const Wrapper = styled.section`
   }
 
   @media (max-width: 768px) {
+    min-height: 80svh;
+    flex-direction: column;
+    gap: clamp(2rem, 6vw, 3rem);
     padding: 4.5rem 0 1.5rem; /* ↓ tighter on mobile too */
   }
 `;
@@ -75,15 +78,24 @@ export const HeroContent = styled.div`
   @media (max-width: 980px) {
     grid-template-columns: 1fr;
   }
+
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1.5rem, 6vw, 2.5rem);
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 export const TopCenterLogo = styled.div`
   position: absolute;
-  top: clamp(1rem, 3.5vw, 2.25rem); 
+  top: clamp(1rem, 3.5vw, 2.25rem);
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;               
-  pointer-events: none;    
+  z-index: 2;
+  pointer-events: none;
   display: grid;
   place-items: center;
 
@@ -93,8 +105,13 @@ export const TopCenterLogo = styled.div`
   }
 
   @media (max-width: 768px) {
+    position: static;
+    transform: none;
+  
+
     img {
-      width: clamp(9rem, 48vw, 13rem);
+      width: clamp(24rem, 68vw, 50rem);
+      height: auto;
     }
   }
 `;
@@ -111,7 +128,7 @@ export const TopRightBadge = styled.div`
   border-radius: 999px;
   background: var(--indigo);
   border: 1px solid var(--indigo);
-  box-shadow: 0 9px 15px var(--cyan);
+  box-shadow: 0 18px 40px var(--blue);
   backdrop-filter: blur(10px);
 
   img {
@@ -130,7 +147,6 @@ export const TopRightBadge = styled.div`
   }
 `;
 
-
 /* ---------- Text Column ---------- */
 export const HeroTextContainer = styled.div`
   display: flex;
@@ -141,7 +157,6 @@ export const HeroTextContainer = styled.div`
   text-align: left;
   max-width: 46rem;
 
-
   p {
     max-width: 60ch;
     color: #ffffffff;
@@ -150,10 +165,21 @@ export const HeroTextContainer = styled.div`
     margin: 0;
     text-wrap: balance;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 980px) {
+    align-items: center;
+    text-align: center;
+    gap: clamp(0.9rem, 4vw, 1.5rem);
   }
 
   @media (max-width: 768px) {
-    .hero-logo { width: clamp(14rem, 50vw, 20rem); }
+    justify-content: center;
+    padding: 0 clamp(1.5rem, 6vw, 2.5rem);
   }
 `;
 
@@ -168,9 +194,11 @@ export const HeroActions = styled.div`
     flex-direction: column;
     width: 100%;
     gap: 0.65rem;
+    align-items: center;
 
     a {
-      width: 100%;
+      width: clamp(12rem, 60vw, 20rem);
+      max-width: 100%;
       text-align: center;
       justify-content: center;
     }
@@ -201,15 +229,19 @@ export const SecondaryAction = styled.a`
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
   }
+
+  /* @media (max-width: 980px) {
+    display: none;
+  } */
 `;
 
 /* ---------- Headline ---------- */
 export const Title = styled.h1`
   margin: 0.2rem 0 0;
   text-align: left;
-  font-size: clamp(1.8rem, 4vw, 4rem); 
+  font-size: clamp(1.8rem, 4vw, 4rem);
   font-weight: 900;
   line-height: 1.06;
   letter-spacing: -0.025em;
@@ -220,6 +252,12 @@ export const Title = styled.h1`
   .accent-underline {
     position: relative;
     display: inline-block;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
   }
 `;
 
@@ -302,11 +340,10 @@ export const HeroVisual = styled.div`
     object-fit: cover;
     display: block;
     transform: translateZ(0);
-    border-radius: 10%; 
+    border-radius: 10%;
   }
 
   @media (max-width: 980px) {
-    place-self: stretch;
-    > span { max-width: 100%; border-radius: 10%; }
+    display:none;
   }
 `;
