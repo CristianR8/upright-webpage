@@ -61,7 +61,7 @@ const HeroSection = () => {
               <Image
                 src={big_banner}
                 alt="Personas colaborando"
-                priority
+                loading="lazy"
                 className="hero-image"
               />
             </HeroVisual>
