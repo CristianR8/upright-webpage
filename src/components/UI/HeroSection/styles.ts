@@ -49,6 +49,11 @@ export const Wrapper = styled.section`
     z-index: 0;
   }
 
+  /* Medium screens: create space for absolute logo */
+  @media (min-width: 769px) and (max-width: 980px) {
+    padding-top: clamp(4rem, 10vw, 6rem);
+  }
+
   @media (max-width: 768px) {
     min-height: 80svh;
     flex-direction: column;
@@ -91,7 +96,7 @@ export const HeroContent = styled.div`
 
 export const TopCenterLogo = styled.div`
   position: absolute;
-  top: clamp(1rem, 3.5vw, 2.25rem);
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -100,8 +105,15 @@ export const TopCenterLogo = styled.div`
   place-items: center;
 
   img {
-    width: clamp(40rem, 26vw, 16rem);
+    width: clamp(40rem, 26vw, 30rem);
     height: auto;
+  }
+
+  /* Medium screens: slightly smaller to avoid overlap */
+  @media (min-width: 769px) and (max-width: 1080px) {
+    img {
+      width: clamp(24rem, 28vw, 22rem);
+    }
   }
 
   @media (max-width: 768px) {
@@ -135,6 +147,13 @@ export const TopRightBadge = styled.div`
     width: clamp(6rem, 12vw, 5.5rem);
     height: auto;
   }
+
+  @media (min-width: 769px) and (max-width: 1080px) {
+    img {
+      width: clamp(3rem, 10vw, 4rem);
+    }
+  }
+
 
   @media (max-width: 768px) {
     top: 1.25rem;
@@ -335,7 +354,7 @@ export const HeroVisual = styled.div`
   }
 
   img.hero-image {
-    width: 100%;
+    width: 80%;
     height: auto;
     object-fit: cover;
     display: block;
