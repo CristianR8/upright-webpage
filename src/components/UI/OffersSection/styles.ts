@@ -307,6 +307,39 @@ export const ModalCard = styled.div`
             mask-composite: exclude;
     pointer-events: none;
     opacity: 0.8;
+    z-index: 3; /* keep border sheen above content */
+  }
+
+  /* Dark overlay above background image for readability */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+      linear-gradient(180deg, rgba(8, 10, 18, 0.60), rgba(8,10,18,0.58));
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* background image inside the card */
+  > .modal-bg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: inherit;
+    z-index: 0;
+    filter: saturate(0.9) brightness(0.9);
+    opacity: 0.28; /* subtle to prioritize text */
+    pointer-events: none;
+  }
+
+  /* ensure main content sits above overlays */
+  > .modal-content {
+    position: relative;
+    z-index: 2;
   }
 
   h3 {

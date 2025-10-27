@@ -103,8 +103,16 @@ export const TopCenterLogo = styled.div`
 
   img { width: clamp(50rem, 16vw, 10rem); height: auto; }
 
-  @media (min-width: 769px) and (max-width: 1080px) {
+  @media (min-width: 769px) and (max-width: 1080px){
     img { width: clamp(24rem, 28vw, 22rem); }
+  }
+
+  /* Reduce logo size on low-height screens */
+  @media (max-height: 980px) {
+    img { width: clamp(35rem, 14vw, 26rem); }
+  }
+  @media (max-height: 780px) {
+    img { width: clamp(18rem, 12vw, 20rem); }
   }
 
   @media (max-width: 768px) {
@@ -259,5 +267,4 @@ export const Emphasis = styled.span`
     pointer-events: none;
   }
 `;
-
 

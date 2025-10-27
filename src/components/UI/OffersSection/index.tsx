@@ -96,43 +96,59 @@ const OffersSection = () => {
       </PartnerBadge>
       {open && (
         <ModalOverlay onClick={() => setOpen(null)}>
-          <ModalCard onClick={() => setOpen(null)} role="dialog" aria-modal="true">
-            <h3>Desarrollo de Páginas Web</h3>
-            <p>
-              Nos especializamos en diseñar y construir sitios web personalizados que se
-              adaptan perfectamente a las necesidades específicas de tu negocio. El diseño
-              está enfocado en la usabilidad, asegurando que los usuarios puedan interactuar
-              con el sitio de manera intuitiva y agradable.
-            </p>
-            <h4>Ventajas de Desarrollo Web</h4>
-            <ul>
-              <li>
-                <strong>Diseño único y exclusivo:</strong> Creamos una identidad visual original y atractiva, lo que
-                ayuda a diferenciar tu marca y genera una impresión profesional y de calidad para tus usuarios.
-              </li>
-              <li>
-                <strong>Personalización total:</strong> Integramos funcionalidades específicas que responden a las
-                particularidades de tu negocio, sin las limitaciones de las plantillas genéricas y sin plugins
-                innecesarios que ralenticen el sitio.
-              </li>
-              <li>
-                <strong>Optimización para SEO y velocidad:</strong> Al construir el sitio desde cero con código limpio y
-                eficiente, conseguimos que tu web cargue rápidamente y esté optimizada para los motores de búsqueda,
-                mejorando su posicionamiento y visibilidad.
-              </li>
-              <li>
-                <strong>Seguridad reforzada:</strong> Implementamos protocolos y medidas de seguridad personalizadas
-                para proteger los datos de tu negocio y la información de tus clientes frente a posibles ataques.
-              </li>
-              <li>
-                <strong>Escalabilidad:</strong> A medida que tu empresa crece, tu sitio podrá adaptarse fácilmente para
-                incluir nuevas funciones o integrarse con sistemas internos como CRM o herramientas de gestión.
-              </li>
-              <li>
-                <strong>Experiencia de usuario mejorada:</strong> Un sitio intuitivo que guía a los visitantes hacia
-                sus objetivos con claridad, logrando así una mayor tasa de conversión y satisfacción del cliente.
-              </li>
-            </ul>
+          <ModalCard onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+            {/* Background image from the matching service */}
+            {(() => {
+              const webOffer = offers.find(o => /desarrollo/i.test(o.title));
+              return webOffer ? (
+                <Image
+                  className="modal-bg"
+                  src={webOffer.illustration}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 92vw, 880px"
+                  priority
+                />
+              ) : null;
+            })()}
+            <div className="modal-content">
+              <h3>Desarrollo de Páginas Web</h3>
+              <p>
+                Nos especializamos en diseñar y construir sitios web personalizados que se
+                adaptan perfectamente a las necesidades específicas de tu negocio. El diseño
+                está enfocado en la usabilidad, asegurando que los usuarios puedan interactuar
+                con el sitio de manera intuitiva y agradable.
+              </p>
+              <h4>Ventajas de Desarrollo Web</h4>
+              <ul>
+                <li>
+                  <strong>Diseño único y exclusivo:</strong> Creamos una identidad visual original y atractiva, lo que
+                  ayuda a diferenciar tu marca y genera una impresión profesional y de calidad para tus usuarios.
+                </li>
+                <li>
+                  <strong>Personalización total:</strong> Integramos funcionalidades específicas que responden a las
+                  particularidades de tu negocio, sin las limitaciones de las plantillas genéricas y sin plugins
+                  innecesarios que ralenticen el sitio.
+                </li>
+                <li>
+                  <strong>Optimización para SEO y velocidad:</strong> Al construir el sitio desde cero con código limpio y
+                  eficiente, conseguimos que tu web cargue rápidamente y esté optimizada para los motores de búsqueda,
+                  mejorando su posicionamiento y visibilidad.
+                </li>
+                <li>
+                  <strong>Seguridad reforzada:</strong> Implementamos protocolos y medidas de seguridad personalizadas
+                  para proteger los datos de tu negocio y la información de tus clientes frente a posibles ataques.
+                </li>
+                <li>
+                  <strong>Escalabilidad:</strong> A medida que tu empresa crece, tu sitio podrá adaptarse fácilmente para
+                  incluir nuevas funciones o integrarse con sistemas internos como CRM o herramientas de gestión.
+                </li>
+                <li>
+                  <strong>Experiencia de usuario mejorada:</strong> Un sitio intuitivo que guía a los visitantes hacia
+                  sus objetivos con claridad, logrando así una mayor tasa de conversión y satisfacción del cliente.
+                </li>
+              </ul>
+            </div>
           </ModalCard>
         </ModalOverlay>
       )}
