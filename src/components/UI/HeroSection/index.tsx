@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Image from "next/image";
 import {
   Wrapper,
@@ -9,15 +10,14 @@ import {
   SecondaryAction,
   Title,
   Emphasis,
-  HeroVisual,
   TopCenterLogo,
   TopRightBadge,
 } from "./styles";
+import SectionDivider from "@/components/Common/SectionDivider";
 import MaskText from "@/components/Common/MaskText";
 import { useIsMobile } from "../../../../libs/useIsMobile";
 import { mobileParagraphPhrases, paragraphPhrases } from "./constants";
 import upright_logo from "../../../../public/svgs/upright.svg";
-import big_banner from "../../../../public/images/big_banner.png";
 import badgeLight from "../../../../public/partner/Badge_light.svg";
 
 const HeroSection = () => {
@@ -25,10 +25,13 @@ const HeroSection = () => {
 
   return (
     <Wrapper aria-labelledby="hero-title">
+      {/* Logo superior centrado */}
       <TopCenterLogo aria-hidden="true">
-        <Image src={upright_logo} alt="" priority width={240} height={80} />
+        <Image src={upright_logo} alt="" priority />
       </TopCenterLogo>
-      <TopRightBadge>
+
+      {/* Insignia superior derecha */}
+      <TopRightBadge aria-label="Partner badge">
         <Image
           src={badgeLight}
           alt="Partner badge"
@@ -37,12 +40,16 @@ const HeroSection = () => {
           loading="lazy"
         />
       </TopRightBadge>
+
       <Inner>
         <HeroContent>
           <HeroTextContainer>
+            {/* Divider full-bleed justo encima del título */}
+            <SectionDivider aria-hidden="true" />
+
             <Title id="hero-title">
-              Transforma tus ideas <br />
-              <Emphasis>en comunidad</Emphasis>
+              Transforma tus ideas en <br />
+              <Emphasis>comunidad</Emphasis>
             </Title>
 
             {isMobile ? (
@@ -57,17 +64,10 @@ const HeroSection = () => {
               </SecondaryAction>
             </HeroActions>
           </HeroTextContainer>
-            <HeroVisual>
-              <Image
-                src={big_banner}
-                alt="Personas colaborando"
-                loading="lazy"
-                className="hero-image"
-              />
-            </HeroVisual>
         </HeroContent>
       </Inner>
     </Wrapper>
+    
   );
 };
 

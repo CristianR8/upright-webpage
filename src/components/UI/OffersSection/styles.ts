@@ -2,6 +2,17 @@
 import Image from 'next/image';
 import { styled } from 'styled-components';
 import grid_background from '../../../../public/images/offer_card_grid_1.png';
+import { keyframes } from 'styled-components';
+
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+const popIn = keyframes`
+  from { transform: translate(-50%, -48%) scale(0.96); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+`;
 
 export const Wrapper = styled.section`
   position: relative;
@@ -119,7 +130,7 @@ export const Offers = styled.div`
 export const OfferCard = styled.div`
   overflow: hidden;
   min-height: 23rem;
-  border-radius: 0.75rem;
+  border-radius: 0; /* remove rounded corners */
   border: 1px solid rgba(58, 193, 192, 0.18);
   box-shadow:
     0 18px 45px rgba(14, 1, 66, 0.45),
@@ -135,8 +146,11 @@ export const OfferCard = styled.div`
       rgba(14, 1, 66, 0.6) 45%,
       rgba(10, 10, 10, 0.92) 100%
     );
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease;
 
   &::before {
     content: '';
@@ -171,6 +185,7 @@ export const OfferCard = styled.div`
     box-shadow:
       0 30px 70px rgba(9, 188, 180, 0.35),
       0 0 0 1px rgba(58, 193, 192, 0.3) inset;
+    border-color: rgba(58, 193, 192, 0.45);
 
     &::after {
       opacity: 0.55;
@@ -182,6 +197,18 @@ export const OfferCard = styled.div`
       background: rgba(14, 1, 66, 0.85);
       border-top-color: rgba(58, 193, 192, 0.6);
     }
+  }
+
+  &:active {
+    transform: translateY(-6px) scale(0.995);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 3px rgba(58, 193, 192, 0.55),
+      0 18px 45px rgba(14, 1, 66, 0.45),
+      0 0 0 1px rgba(58, 193, 192, 0.2) inset;
   }
 
   @media (max-width: 768px) {
@@ -222,5 +249,92 @@ export const PartnerBadge = styled.div`
     img {
       width: 150px;
     }
+  }
+`;
+
+/* ---------- Modal for Offer details ---------- */
+export const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background:
+    radial-gradient(120% 140% at 10% 20%, rgba(58,193,192,0.10), transparent 45%),
+    radial-gradient(120% 140% at 90% 80%, rgba(90,140,255,0.10), transparent 40%),
+    rgba(5, 9, 18, 0.62);
+  backdrop-filter: blur(3px);
+  z-index: 9999;
+  animation: ${fadeIn} 160ms ease-out;
+  cursor: pointer;
+`;
+
+export const ModalCard = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(880px, 92vw);
+  max-height: 80vh;
+  overflow: auto;
+  padding: 2rem clamp(1.25rem, 3vw, 2rem);
+  background:
+    radial-gradient(120% 160% at -10% -20%, rgba(58,193,192,0.12), transparent 35%),
+    radial-gradient(120% 160% at 120% 120%, rgba(90,140,255,0.12), transparent 35%),
+    linear-gradient(180deg, rgba(18,20,34,0.95) 0%, rgba(12,14,24,0.96) 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(58, 193, 192, 0.28);
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(255,255,255,0.04) inset;
+  z-index: 10000;
+  animation: ${popIn} 160ms ease-out;
+  color: #f2f2f2;
+  cursor: pointer;
+  position: fixed;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(58,193,192,0.65), rgba(90,140,255,0.45), rgba(255,255,255,0.12));
+    -webkit-mask: 
+      linear-gradient(#000 0 0) content-box, 
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+    letter-spacing: -0.01em;
+    font-weight: 700;
+  }
+  h4 {
+    margin: 1rem 0 0.5rem;
+    font-size: 1.05rem;
+    color: #bfe9e8;
+    letter-spacing: 0.02em;
+  }
+  p { margin: 0.5rem 0 1rem; line-height: 1.65; color: #e8f6f6; }
+  ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+  li { margin: 0.4rem 0; }
+
+  /* nice-looking scroll */
+  &::-webkit-scrollbar { width: 10px; }
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(58,193,192,0.6), rgba(90,140,255,0.5));
+    border-radius: 999px;
+  }
+  &::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 999px; }
+
+  @media (max-width: 768px) {
+    border-radius: 12px;
+    max-height: 82vh;
   }
 `;

@@ -27,7 +27,7 @@ export const LogoContainer = styled.div`
   flex: 1;
 
   img {
-    width: 9rem;
+    width: 3rem;
     height: auto;
   }
 
@@ -38,7 +38,7 @@ export const LogoContainer = styled.div`
     width: 100%;
 
     img {
-      width: 7rem;
+      width: 1rem;
     }
   }
 `;
