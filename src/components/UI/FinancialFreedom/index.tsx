@@ -13,7 +13,7 @@ import {
 } from "./styles";
 import MaskText from "@/components/Common/MaskText";
 import RevealCover from "@/components/Common/RevealCover";
-import { Div } from "../Featured/styles";
+import { BannerImage } from "./styles";
 import { imageVariants } from "../Featured";
 import { useIsMobile } from "../../../../libs/useIsMobile";
 import financial_freedom_banner from "../../../../public/images/financial_freedom_banner.png";
@@ -86,14 +86,14 @@ const FinancialFreedom = () => {
 
         <BannerCtn>
           <RevealCover />
-          <Div
+          <BannerImage
             variants={imageVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ amount: 0.25, once: true }}
           >
             <Image src={financial_freedom_banner} alt="banner_img" fill />
-          </Div>
+          </BannerImage>
         </BannerCtn>
       </Inner>
     </Wrapper>

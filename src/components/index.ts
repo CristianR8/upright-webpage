@@ -6,3 +6,4 @@ export { default as FinancilaFreedom } from './UI/FinancialFreedom';
 export { default as Footer } from './UI/Footer';
 export { default as MaskText } from './Common/MaskText';
 export { default as Featured } from './UI/Featured';
+export { default as Message } from './UI/Message';

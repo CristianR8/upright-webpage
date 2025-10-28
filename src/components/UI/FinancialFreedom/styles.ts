@@ -68,6 +68,14 @@ export const BannerCtn = styled.div`
   &::after { /* ...keep existing... */ }
 `;
 
+/* Container for the banner image inside BannerCtn */
+export const BannerImage = styled(motion.div as unknown as 'div')`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
+
 /* ---------- Edge cards ---------- */
 export const Edges = styled.div`
   position: relative;

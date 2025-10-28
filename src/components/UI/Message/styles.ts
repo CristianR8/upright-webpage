@@ -2,12 +2,6 @@
 import { keyframes, styled } from 'styled-components';
 
 /* ---------- Animations ---------- */
-const float = keyframes`
-  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
-  50%  { transform: translate3d(0, -8px, 0) rotate(-0.4deg); }
-  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-`;
-
 const shimmer = keyframes`
   0% { background-position: 0% 50%;}
   100%{ background-position: 100% 50%;}
@@ -18,15 +12,15 @@ export const Wrapper = styled.section`
   position: relative;
   isolation: isolate;
   min-height: 100svh;
-  overflow: hidden; /* para poder recortar el logo sobredimensionado */
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--white);
   background:
-    radial-gradient(1200px 800px at 15% 75%, #2e2d73, transparent 60%),
-    radial-gradient(900px 700px at 85% 20%, #2e2d73, transparent 60%),
-    linear-gradient(180deg, #0b1020 80%, #000 100%);
+    radial-gradient(900px 700px at 85% 85%, var(--cyan), transparent 80%),
+    radial-gradient(1200px 800px at 15% 20%, var(--cyan), transparent 60%),
+    linear-gradient(180deg, var(--Background) 60%, var(--Background) 100%);
 
   &::before {
     content: '';
@@ -51,6 +45,7 @@ export const Wrapper = styled.section`
 
   @media (min-width: 769px) and (max-width: 980px) {
     padding-top: clamp(4rem, 10vw, 6rem);
+    
   }
 
   @media (max-width: 768px) {
@@ -58,6 +53,11 @@ export const Wrapper = styled.section`
     flex-direction: column;
     gap: clamp(2rem, 6vw, 3rem);
     padding: 4.5rem 0 1.5rem;
+    background:
+    radial-gradient(450px 450px at 85% 85%, var(--cyan), transparent 80%),
+    radial-gradient(500px 500px at 15% 20%, var(--cyan), transparent 80%),
+    linear-gradient(180deg, var(--Background) 60%, var(--Background) 100%);
+
   }
 `;
 
@@ -90,63 +90,9 @@ export const HeroContent = styled.div`
   }
 `;
 
-
-export const TopCenterLogo = styled.div`
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  pointer-events: none;
-  display: grid;
-  place-items: center;
-
-
-  img { width: clamp(50rem, 16vw, 10rem); height: auto; }
-
-  @media (min-width: 769px) and (max-width: 1080px){
-    img { width: clamp(24rem, 28vw, 22rem); }
-  }
-
-  /* Reduce logo size on low-height screens */
-  @media (max-height: 980px) {
-    img { width: clamp(35rem, 14vw, 26rem); }
-  }
-  @media (max-height: 780px) {
-    img { width: clamp(8rem, 12vw, 10rem); }
-  }
-
-  @media (max-width: 768px) {
-    position: static;
-    transform: none;
-    img { width: clamp(24rem, 68vw, 50rem); height: auto; }
-  }
-`;
-
-export const TopRightBadge = styled.div`
-  position: absolute;
-  top: clamp(1.5rem, 4vw, 3rem);
-  right: clamp(1.5rem, 4vw, 3rem);
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  box-shadow: 0 18px 40px var(--blue);
-  backdrop-filter: blur(10px);
-
-  img { width: clamp(6rem, 12vw, 5.5rem); height: auto; }
-
-  @media (min-width: 769px) and (max-width: 1080px) { img { width: clamp(3rem, 10vw, 4rem); } }
-  @media (max-width: 768px) {
-    top: 1.25rem; right: 1rem; padding: 0.4rem 1rem;
-    img { width: clamp(3.25rem, 22vw, 4.5rem); }
-  }
-`;
-
 /* ---------- Text Column ---------- */
 export const HeroTextContainer = styled.div`
-  overflow: visible; /* evita cualquier recorte del separador full-bleed */
+  overflow: visible;
   display: flex;
   flex-direction: column;
   gap: clamp(0.6rem, 1.3vw, 1.25rem);
@@ -256,7 +202,6 @@ export const Emphasis = styled.span`
   background-size: 200% 100%;
   position: relative;
 
-  /* glow inferior más fino y elegante */
   &::after {
     content: '';
     position: absolute;
@@ -269,27 +214,3 @@ export const Emphasis = styled.span`
   }
 `;
 
-/* ---------- Logo-only view ---------- */
-export const LogoOnly = styled.div`
-  position: relative;
-  width: 100%;
-  min-height: 100svh; /* keep centered regardless of viewport */
-  display: grid;
-  place-items: center;
-
-  img {
-    width: clamp(18rem, 36vw, 64rem);
-    height: auto;
-    display: block;
-    /* Restore original bottom crop while keeping centered */
-    clip-path: inset(0 0 44% 0);
-  }
-
-  @media (max-width: 768px) {
-    min-height: 80svh;
-    img {
-      width: clamp(14rem, 64vw, 36rem);
-      clip-path: inset(0 0 44% 0);
-    }
-  }
-`;

@@ -8,15 +8,18 @@ import {
   useMotionValue,
   useVelocity,
   useAnimationFrame,
+  type MotionValue,
 } from 'framer-motion';
 import { wrap } from '@motionone/utils';
 
 interface ParallaxProps {
   children: React.ReactNode;
   baseVelocity: number;
+  /** Multiplier to scale velocity dynamically (e.g., on hover). */
+  velocityScale?: number | MotionValue<number>;
 }
 
-function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
+function ParallaxText({ children, baseVelocity = 100, velocityScale = 1 }: ParallaxProps) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -49,7 +52,10 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
       directionFactor.current = 1;
     }
 
+    // Apply scroll velocity and external scale (e.g., hover slowdown)
     moveBy += directionFactor.current * moveBy * velocityFactor.get();
+    const scale = typeof velocityScale === 'number' ? velocityScale : velocityScale?.get?.() ?? 1;
+    moveBy *= scale;
 
     baseX.set(baseX.get() + moveBy);
   });

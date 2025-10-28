@@ -10,7 +10,8 @@ const SectionDivider = styled.div`
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 
-  height: 36px;
+  /* No ocupar espacio: se ubica justo entre secciones */
+  height: 0;
   background: transparent;
   z-index: 2;
 
@@ -18,7 +19,7 @@ const SectionDivider = styled.div`
     content:"";
     position:absolute;
     left:0; right:0;
-    top:50%;
+    top:0;
     height:2px;
     transform: translateY(-50%);
     background: linear-gradient(90deg,
@@ -36,7 +37,7 @@ const SectionDivider = styled.div`
     content:"";
     position:absolute;
     left:0; right:0;
-    top:50%;
+    top:0;
     transform: translateY(-50%);
     height:20px;
     background: radial-gradient(ellipse at center,
@@ -47,8 +48,8 @@ const SectionDivider = styled.div`
   }
 
   @media (max-width: 768px){
-    height:24px;
     &::after{ height:1.5px; }
+    &::before{ height:16px; }
   }
 `;
 

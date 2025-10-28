@@ -129,7 +129,7 @@ export const Offers = styled.div`
 
 export const OfferCard = styled.div`
   overflow: hidden;
-  min-height: 23rem;
+  min-height: 26rem;
   border-radius: 0; /* remove rounded corners */
   border: 1px solid rgba(58, 193, 192, 0.18);
   box-shadow:

@@ -38,7 +38,7 @@ export const LogoContainer = styled.div`
     width: 100%;
 
     img {
-      width: 1rem;
+      width: clamp(1.75rem, 9vw, 2.25rem);
     }
   }
 `;
