@@ -14,7 +14,6 @@ import {
 import MaskText from "@/components/Common/MaskText";
 import RevealCover from "@/components/Common/RevealCover";
 import { BannerImage } from "./styles";
-import { imageVariants } from "../Featured";
 import { useIsMobile } from "../../../../libs/useIsMobile";
 import financial_freedom_banner from "../../../../public/images/financial_freedom_banner.png";
 import {
@@ -42,6 +41,15 @@ const edgeVariants = {
       ease: [0.22, 0.61, 0.36, 1],
     },
   }),
+};
+
+// Local image reveal variants for the banner (decoupled from Featured)
+const imageVariants = {
+  hidden: { scale: 1.6 },
+  visible: {
+    scale: 1,
+    transition: { duration: 1.4, ease: [0.6, 0.05, -0.01, 0.9], delay: 0.2 },
+  },
 };
 
 const FinancialFreedom = () => {

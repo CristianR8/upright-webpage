@@ -69,7 +69,7 @@ export const BannerCtn = styled.div`
 `;
 
 /* Container for the banner image inside BannerCtn */
-export const BannerImage = styled(motion.div as unknown as 'div')`
+export const BannerImage = styled(motion.div)`
   position: relative;
   width: 100%;
   height: 100%;
