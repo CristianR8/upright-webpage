@@ -22,13 +22,14 @@ export const Wrapper = styled.section`
     linear-gradient(180deg, var(--Background) 0%, var(--Background) 95%);
   color: var(--white);
   overflow: hidden;
-  padding-bottom: 20rem;
+  padding-bottom: 6rem;
 `;
 
 export const Inner = styled.div`
-  max-width: 1440px;
-  width: 90%;
+  max-width: 100%;
+  width: 100%;
   margin: 12.38rem auto 0;
+  padding: 0 0.75rem; /* outer gutter equals cards' gap */
 
   @media (max-width: 768px) {
     margin-top: 6.44rem;
@@ -69,57 +70,51 @@ export const Header = styled.header`
   }
 `;
 
-export const TextCtn = styled.div`
-  padding: 2rem;
-  width: 100%;
+export const ButtonsRow = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 34%; 
+  transform: translate(-50%, -50%);
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-top: auto;
-  position: relative;
-  z-index: 3;
-  background: rgba(14, 1, 66, 0.72);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(58, 193, 192, 0.25);
-
-  /* hidden by default (desktop) */
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-
-  h2 {
-    font-size: 1.75rem;
-    font-weight: 500;
-    line-height: 1.6rem;
-    color: var(--white);
-  }
-
-  p {
-    color: rgba(242, 242, 242, 0.88);
-    font-size: 0.95rem;
-    font-weight: 400;
-    line-height: 1.45rem;
-  }
+  gap: 0.5rem;
+  z-index: 4;
 
   @media (max-width: 768px) {
-    /* always visible on mobile */
-    opacity: 1;
-    transform: none;
-    padding: 1.5rem;
-    h2 {
-      font-size: 1.5rem;
-    }
+    top: 36%;
   }
+`;
+
+export const ActionButton = styled.button<{ $variant: 'indigo' | 'gray' }>`
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.8rem 1.25rem; 
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-family: inherit; /* match site font */
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+
+  color: ${({ $variant }) => ($variant === 'indigo' ? 'var(--white)' : 'var(--blue)')};
+  background: ${({ $variant }) => ($variant === 'indigo' ? 'var(--blue)' : 'var(--gray)')};
+  box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+
+  &:hover { transform: translateY(-1px); opacity: 0.95; }
+  &:active { transform: translateY(0); opacity: 0.9; }
+  &:focus-visible { outline: 2px solid rgba(58,193,192,0.6); outline-offset: 2px; }
 `;
 
 export const Offers = styled.div`
   display: flex;
   align-items: stretch;
   justify-content: center;
-  gap: 2rem;
+  /* Minimal gutter between cards */
+  gap: 0.75rem;
 
   &:not(:first-child) {
-    margin-top: 2rem;
+    /* Match vertical gutter between rows */
+    margin-top: 0.75rem;
   }
 
   @media (max-width: 992px) {
@@ -132,9 +127,7 @@ export const OfferCard = styled.div`
   min-height: 26rem;
   border-radius: 0; /* remove rounded corners */
   border: 1px solid rgba(58, 193, 192, 0.18);
-  box-shadow:
-    0 18px 45px rgba(14, 1, 66, 0.45),
-    0 0 0 1px rgba(58, 193, 192, 0.05) inset;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -146,23 +139,13 @@ export const OfferCard = styled.div`
       rgba(14, 1, 66, 0.6) 45%,
       rgba(10, 10, 10, 0.92) 100%
     );
-  cursor: pointer;
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.25s ease;
+  cursor: default; /* no longer clickable */
+  transition: none; /* remove hover transition */
 
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      210deg,
-      rgba(58, 193, 192, 0.22) 0%,
-      rgba(46, 45, 115, 0.4) 40%,
-      rgba(14, 1, 66, 0.75) 80%,
-      rgba(10, 10, 10, 0.95) 100%
-    );
     z-index: 1;
   }
 
@@ -170,45 +153,19 @@ export const OfferCard = styled.div`
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(65% 65% at 80% 20%, rgba(58, 193, 192, 0.35), transparent 70%),
-      url(${grid_background.src}) center/cover no-repeat;
     mix-blend-mode: screen;
     opacity: 0.28;
     z-index: 2;
     transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* hover reveal */
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow:
-      0 30px 70px rgba(9, 188, 180, 0.35),
-      0 0 0 1px rgba(58, 193, 192, 0.3) inset;
-    border-color: rgba(58, 193, 192, 0.45);
-
-    &::after {
-      opacity: 0.55;
-    }
-
-    ${TextCtn} {
-      opacity: 1;
-      transform: translateY(0);
-      background: rgba(14, 1, 66, 0.85);
-      border-top-color: rgba(58, 193, 192, 0.6);
-    }
-  }
-
-  &:active {
-    transform: translateY(-6px) scale(0.995);
-  }
+  /* disable hover/active effects */
+  &:hover { transform: none; box-shadow: none; border-color: rgba(58, 193, 192, 0.18); }
+  &:active { transform: none; }
 
   &:focus-visible {
     outline: none;
-    box-shadow:
-      0 0 0 3px rgba(58, 193, 192, 0.55),
-      0 18px 45px rgba(14, 1, 66, 0.45),
-      0 0 0 1px rgba(58, 193, 192, 0.2) inset;
+    box-shadow: none;
   }
 
   @media (max-width: 768px) {
@@ -217,39 +174,9 @@ export const OfferCard = styled.div`
 `;
 
 export const CardImage = styled(Image)`
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
-  z-index: 0;
-`;
-
-export const PartnerBadge = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  margin: 8rem auto;
-  border-radius: 5%;
-  background: rgba(14, 1, 66, 0.75);
-  border: 1px solid var(--indigo);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 18px 40px var(--blue);
-
-  img {
-    width: 240px;
-    height: auto;
-  }
-
-  @media (max-width: 768px) {
-    img {
-      width: 150px;
-    }
-  }
+  display: block;
+  height: auto;
+  width: auto;
 `;
 
 /* ---------- Modal for Offer details ---------- */

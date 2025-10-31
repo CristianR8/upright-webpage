@@ -7,9 +7,9 @@ import {
   Header,
   Offers,
   OfferCard,
-  TextCtn,
+  ButtonsRow,
+  ActionButton,
   CardImage,
-  PartnerBadge,
   ModalOverlay,
   ModalCard,
 } from './styles';
@@ -54,64 +54,49 @@ const OffersSection = () => {
           offers.slice(idx * 2, idx * 2 + 2)
         ).map((pair, index) => (
           <Offers key={`offers-row-${index}`}>
-            {pair.map((offer) => (
-              <OfferCard
-                key={offer.title}
-                role="button"
-                tabIndex={0}
-                onClick={() => {
-                  const t = offer.title.toLowerCase();
-                  if (/desarrollo/.test(t)) setOpen('web');
-                  else if (/dron/.test(t)) setOpen('drones');
-                  else if (/(google|ads|pauta)/.test(t)) setOpen('ads');
-                  else if (/automat/.test(t)) setOpen('automation');
-                  else if (/(lista|difusi[oó]n|whatsapp)/.test(t)) setOpen('broadcast');
-                  else if (/(optimización|plataformas)/.test(t)) setOpen('optimize');
-                  else if (/(comunicaci[oó]n|redes|social)/.test(t)) setOpen('communication');
-                  else if (/branding/.test(t)) setOpen('branding');
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    const t = offer.title.toLowerCase();
-                    if (/desarrollo/.test(t)) setOpen('web');
-                    else if (/dron/.test(t)) setOpen('drones');
-                    else if (/(google|ads|pauta)/.test(t)) setOpen('ads');
-                    else if (/automat/.test(t)) setOpen('automation');
-                    else if (/(lista|difusi[oó]n|whatsapp)/.test(t)) setOpen('broadcast');
-                    else if (/(optimización|plataformas)/.test(t)) setOpen('optimize');
-                    else if (/(comunicaci[oó]n|redes|social)/.test(t)) setOpen('communication');
-                    else if (/branding/.test(t)) setOpen('branding');
-                  }
-                }}
-              >
-                <CardImage
-                  src={offer.illustration}
-                  alt={offer.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 580px"
-                  loading="lazy"
-                  placeholder="blur"
-                />
-                <TextCtn>
-                  <MaskText phrases={[offer.title]} tag="h2" />
-                  <p>{offer.details}</p>
-                </TextCtn>
-              </OfferCard>
-            ))}
+            {pair.map((offer) => {
+              const openForOffer = () => {
+                const t = offer.title.toLowerCase();
+                if (/desarrollo/.test(t)) setOpen('web');
+                else if (/dron/.test(t)) setOpen('drones');
+                else if (/(google|ads|pauta)/.test(t)) setOpen('ads');
+                else if (/automat/.test(t)) setOpen('automation');
+                else if (/(lista|difusi[oó]n|whatsapp)/.test(t)) setOpen('broadcast');
+                else if (/(optimización|plataformas)/.test(t)) setOpen('optimize');
+                else if (/(comunicaci[oó]n|redes|social)/.test(t)) setOpen('communication');
+                else if (/branding/.test(t)) setOpen('branding');
+              };
+
+              return (
+                <OfferCard key={offer.title}>
+                  <CardImage
+                    src={offer.illustration}
+                    alt={offer.title}
+                    loading="lazy"
+                    placeholder="blur"
+                  />
+                  <ButtonsRow>
+                    <ActionButton $variant="indigo" type="button" onClick={openForOffer}>
+                      Ver más
+                    </ActionButton>
+                    <ActionButton
+                      as="a"
+                      href="https://wa.me/message/BDRPYGZON5JOL1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      $variant="gray"
+                    >
+                      Adquirir
+                    </ActionButton>
+                  </ButtonsRow>
+                </OfferCard>
+              );
+            })}
           </Offers>
         ))}
       </Inner>
 
-      <PartnerBadge>
-        <Image
-          src={badgeLight}
-          alt="Partner badge"
-          width={160}
-          height={160}
-          loading="lazy"
-        />
-      </PartnerBadge>
+      
       {open && (
         <ModalOverlay onClick={() => setOpen(null)}>
           <ModalCard onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">

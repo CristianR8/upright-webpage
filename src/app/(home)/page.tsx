@@ -16,7 +16,7 @@ export default function Home() {
         <Message />
       </section>
       <SectionDivider aria-hidden="true" />
-      <Featured />
+
       <SectionDivider aria-hidden="true" />
       <section id="nosotros" style={{ scrollMarginTop: "90px" }}>
         <FinancilaFreedom />
@@ -25,6 +25,10 @@ export default function Home() {
       <section id="servicios" style={{ scrollMarginTop: "90px" }}>
         <OffersSection />
       </section>
+      <SectionDivider aria-hidden="true" />
+
+      <Featured />
+      {/* Section Kommo */}
     </main>
   );
 }

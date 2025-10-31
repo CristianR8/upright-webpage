@@ -1,13 +1,13 @@
-import service1 from '../../../../public/services/1_web.png';
-import service2 from '../../../../public/services/2_dron.png';
-import service3 from '../../../../public/services/3_meta.png';
-import service4 from '../../../../public/services/4_kommo.png';
-import service5 from '../../../../public/services/5.webp';
-import service6 from '../../../../public/services/6.jpg';
-import service7 from '../../../../public/services/7.webp';
-import service8 from '../../../../public/services/8.webp';
+import service1 from '../../../../public/services/1.png';
+import service2 from '../../../../public/services/2.png';
+import service3 from '../../../../public/services/3.png';
+import service4 from '../../../../public/services/4.png';
+import service5 from '../../../../public/services/5.png';
+import service6 from '../../../../public/services/6.png';
+import service7 from '../../../../public/services/7.png';
+import service8 from '../../../../public/services/8.png';
 import service9 from '../../../../public/services/9.png';
-import service10 from '../../../../public/services/10.jpg';
+import service10 from '../../../../public/services/10.png';
 
 // For desktop
 export const desktopHeaderPhrases = [
