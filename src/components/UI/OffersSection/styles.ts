@@ -86,7 +86,7 @@ export const ButtonsRow = styled.div`
 
 export const ActionButton = styled.button<{ $variant: 'indigo' | 'gray' }>`
   appearance: none;
-  border: none;
+  border: ${({ $variant }) => ($variant === 'gray' ? '1px solid var(--Background)' : 'none')};
   cursor: pointer;
   padding: 0.8rem 1.25rem; 
   border-radius: 999px;
