@@ -11,7 +11,7 @@ const underlineSlide = keyframes`
 export const Wrapper = styled.section`
   position: relative;
   padding: 1.5rem;
-  background: var(--Background);
+  background: var(--white);
   &::before {
     content: "";
     position: absolute;
@@ -27,7 +27,6 @@ export const Inner = styled.div`
   display: grid;
   gap: clamp(1.25rem, 3vw, 2rem);
   align-items: center;
-  /* reduce vertical whitespace */
   margin: 0 auto;
   max-width: 1200px;
   width: min(92vw, 1200px);
@@ -40,7 +39,7 @@ export const Heading = styled.header`
   gap: 0.5rem;
 
   h2 {
-    color: var(--white);
+    color: var(--Background);
     font-size: clamp(1.8rem, 4vw, 2.4rem);
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -113,15 +112,13 @@ export const AllyItem = styled.div`
 
   border-radius: 16px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.05); 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   
   img {
     width: 100%;
     height: 100%;
     object-fit: cover; /* contain → cover para que ocupe todo el espacio */
     border-radius: inherit;
-    background-color: #fff; /* evita bordes duros en logos con fondo transparente */
+    background-color: #ffffff; /* evita bordes duros en logos con fondo transparente */
     transition: filter 0.35s ease, transform 0.35s ease;
     filter: grayscale(1) opacity(0.85);
   }
