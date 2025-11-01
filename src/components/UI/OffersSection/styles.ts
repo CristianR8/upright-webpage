@@ -81,6 +81,7 @@ export const ButtonsRow = styled.div`
 
   @media (max-width: 768px) {
     top: 36%;
+    
   }
 `;
 
@@ -90,7 +91,7 @@ export const ActionButton = styled.button<{ $variant: 'indigo' | 'gray' }>`
   cursor: pointer;
   padding: 0.8rem 1.25rem; 
   border-radius: 999px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   font-family: inherit; /* match site font */
@@ -103,6 +104,11 @@ export const ActionButton = styled.button<{ $variant: 'indigo' | 'gray' }>`
   &:hover { transform: translateY(-1px); opacity: 0.95; }
   &:active { transform: translateY(0); opacity: 0.9; }
   &:focus-visible { outline: 2px solid rgba(58,193,192,0.6); outline-offset: 2px; }
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+    padding: 0.6rem 1rem;
+  }
 `;
 
 export const Offers = styled.div`
