@@ -60,6 +60,8 @@ const OffersSection = () => {
                 if (/desarrollo/.test(t)) setOpen('web');
                 else if (/dron/.test(t)) setOpen('drones');
                 else if (/(google|ads|pauta)/.test(t)) setOpen('ads');
+                else if (/(portafolio)/.test(t)) setOpen('metaPortfolio');
+                else if (/(crm|kommo)/.test(t)) setOpen('crm');
                 else if (/automat/.test(t)) setOpen('automation');
                 else if (/(lista|difusi[oó]n|whatsapp)/.test(t)) setOpen('broadcast');
                 else if (/(optimización|plataformas)/.test(t)) setOpen('optimize');
@@ -107,6 +109,8 @@ const OffersSection = () => {
                 if (open === 'web') return /desarrollo/.test(t);
                 if (open === 'drones') return /dron/.test(t);
                 if (open === 'ads') return /(google|ads|pauta)/.test(t);
+                if (open === 'metaPortfolio') return /(portafolio)/.test(t);
+                if (open === 'crm') return /(crm|kommo)/.test(t);
                 if (open === 'automation') return /automat/.test(t);
                 if (open === 'broadcast') return /(lista|difusi[oó]n|whatsapp)/.test(t);
                 if (open === 'optimize') return /(optimización|plataformas)/.test(t);

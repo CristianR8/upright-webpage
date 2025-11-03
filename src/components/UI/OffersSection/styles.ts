@@ -262,6 +262,7 @@ export const ModalCard = styled.div`
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
+    object-position: 50% 40%; /* move visual focus slightly upward */
     border-radius: inherit;
     z-index: 0;
     filter: saturate(0.9) brightness(0.9);
