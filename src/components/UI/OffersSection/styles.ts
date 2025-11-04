@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import { styled } from 'styled-components';
-import grid_background from '../../../../public/images/offer_card_grid_1.png';
 import { keyframes } from 'styled-components';
 
 const fadeIn = keyframes`
@@ -16,23 +15,49 @@ const popIn = keyframes`
 
 export const Wrapper = styled.section`
   position: relative;
-  background:
-    radial-gradient(1200px 800px at 15% 85%, var(--blue), transparent 75%),
-    radial-gradient(900px 700px at 85% 40%, var(--blue), transparent 80%),
-    linear-gradient(180deg, var(--Background) 0%, var(--Background) 95%);
+  isolation: isolate;
   color: var(--white);
   overflow: hidden;
   padding-bottom: 6rem;
+
+  /* Background matched to HeroSection */
+  background:
+    radial-gradient(1200px 800px at 10% 10%, var(--blue), transparent 90%),
+    radial-gradient(900px 700px at 90% 4%, var(--blue), transparent 90%),
+    linear-gradient(180deg, var(--indigo) 10%, var(--Background) 20%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/fi%3Elter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px,
+      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px;
+    mask-image: radial-gradient(70% 60% at 30% 40%, black 55%, transparent 75%);
+    z-index: 0;
+  }
 `;
 
 export const Inner = styled.div`
+  position: relative;
+  z-index: 1; /* keep above background overlays */
   max-width: 100%;
   width: 100%;
-  margin: 12.38rem auto 0;
+  margin: 4.38rem auto 0;
   padding: 0 0.75rem; /* outer gutter equals cards' gap */
 
   @media (max-width: 768px) {
-    margin-top: 6.44rem;
+    margin-top: 2.44rem;
   }
 `;
 
@@ -43,7 +68,7 @@ export const Header = styled.header`
   gap: 1.5rem;
   text-align: center;
   max-width: 56rem;
-  margin: 0 auto 6.75rem;
+  margin: 0 auto 2rem; /* reduced spacing below header to bring banner closer */
 
   h1 {
     font-size: 4.75rem;

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import {
   Wrapper,
   Inner,
@@ -12,9 +12,9 @@ import {
   CardImage,
   ModalOverlay,
   ModalCard,
-} from './styles';
-import MaskText from '@/components/Common/MaskText';
-import { useIsMobile } from '../../../../libs/useIsMobile';
+} from "./styles";
+import MaskText from "@/components/Common/MaskText";
+import { useIsMobile } from "../../../../libs/useIsMobile";
 import {
   desktopHeaderPhrases,
   desktopParagraphPhrase,
@@ -22,8 +22,11 @@ import {
   offers,
   serviceModals,
   type ServiceModalKey,
-} from './constants';
-import badgeLight from '../../../../public/partner/Badge_light.svg';
+} from "./constants";
+import dynamic from "next/dynamic";
+const GifBanner = dynamic(() => import("@/components/UI/GifBanner/GifBanner"), {
+  ssr: false, // importante
+});
 
 const OffersSection = () => {
   const isMobile = useIsMobile();
@@ -32,10 +35,10 @@ const OffersSection = () => {
   // Close on ESC
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(null);
+      if (e.key === "Escape") setOpen(null);
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
   return (
@@ -43,13 +46,8 @@ const OffersSection = () => {
       <Inner>
         <Header>
           <MaskText phrases={desktopHeaderPhrases} tag="h1" />
-          {isMobile ? (
-            <MaskText phrases={mobileParagraphPhrase} tag="p" />
-          ) : (
-            <MaskText phrases={desktopParagraphPhrase} tag="p" />
-          )}
         </Header>
-
+        <GifBanner />
         {Array.from({ length: Math.ceil(offers.length / 2) }, (_, idx) =>
           offers.slice(idx * 2, idx * 2 + 2)
         ).map((pair, index) => (
@@ -57,16 +55,19 @@ const OffersSection = () => {
             {pair.map((offer) => {
               const openForOffer = () => {
                 const t = offer.title.toLowerCase();
-                if (/desarrollo/.test(t)) setOpen('web');
-                else if (/dron/.test(t)) setOpen('drones');
-                else if (/(google|ads|pauta)/.test(t)) setOpen('ads');
-                else if (/(portafolio)/.test(t)) setOpen('metaPortfolio');
-                else if (/(crm|kommo)/.test(t)) setOpen('crm');
-                else if (/automat/.test(t)) setOpen('automation');
-                else if (/(lista|difusi[oó]n|whatsapp)/.test(t)) setOpen('broadcast');
-                else if (/(optimización|plataformas)/.test(t)) setOpen('optimize');
-                else if (/(comunicaci[oó]n|redes|social)/.test(t)) setOpen('communication');
-                else if (/branding/.test(t)) setOpen('branding');
+                if (/desarrollo/.test(t)) setOpen("web");
+                else if (/dron/.test(t)) setOpen("drones");
+                else if (/(google|ads|pauta)/.test(t)) setOpen("ads");
+                else if (/(portafolio)/.test(t)) setOpen("metaPortfolio");
+                else if (/(crm|kommo)/.test(t)) setOpen("crm");
+                else if (/automat/.test(t)) setOpen("automation");
+                else if (/(lista|difusi[oó]n|whatsapp)/.test(t))
+                  setOpen("broadcast");
+                else if (/(optimización|plataformas)/.test(t))
+                  setOpen("optimize");
+                else if (/(comunicaci[oó]n|redes|social)/.test(t))
+                  setOpen("communication");
+                else if (/branding/.test(t)) setOpen("branding");
               };
 
               return (
@@ -78,7 +79,11 @@ const OffersSection = () => {
                     placeholder="blur"
                   />
                   <ButtonsRow>
-                    <ActionButton $variant="indigo" type="button" onClick={openForOffer}>
+                    <ActionButton
+                      $variant="indigo"
+                      type="button"
+                      onClick={openForOffer}
+                    >
                       Ver más
                     </ActionButton>
                     <ActionButton
@@ -98,24 +103,30 @@ const OffersSection = () => {
         ))}
       </Inner>
 
-      
       {open && (
         <ModalOverlay onClick={() => setOpen(null)}>
-          <ModalCard onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+          <ModalCard
+            onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+          >
             {/* Background image from the matching service */}
             {(() => {
-              const match = offers.find(o => {
+              const match = offers.find((o) => {
                 const t = o.title.toLowerCase();
-                if (open === 'web') return /desarrollo/.test(t);
-                if (open === 'drones') return /dron/.test(t);
-                if (open === 'ads') return /(google|ads|pauta)/.test(t);
-                if (open === 'metaPortfolio') return /(portafolio)/.test(t);
-                if (open === 'crm') return /(crm|kommo)/.test(t);
-                if (open === 'automation') return /automat/.test(t);
-                if (open === 'broadcast') return /(lista|difusi[oó]n|whatsapp)/.test(t);
-                if (open === 'optimize') return /(optimización|plataformas)/.test(t);
-                if (open === 'communication') return /(comunicaci[oó]n|redes|social)/.test(t);
-                if (open === 'branding') return /branding/.test(t);
+                if (open === "web") return /desarrollo/.test(t);
+                if (open === "drones") return /dron/.test(t);
+                if (open === "ads") return /(google|ads|pauta)/.test(t);
+                if (open === "metaPortfolio") return /(portafolio)/.test(t);
+                if (open === "crm") return /(crm|kommo)/.test(t);
+                if (open === "automation") return /automat/.test(t);
+                if (open === "broadcast")
+                  return /(lista|difusi[oó]n|whatsapp)/.test(t);
+                if (open === "optimize")
+                  return /(optimización|plataformas)/.test(t);
+                if (open === "communication")
+                  return /(comunicaci[oó]n|redes|social)/.test(t);
+                if (open === "branding") return /branding/.test(t);
                 return false;
               });
               return match ? (
