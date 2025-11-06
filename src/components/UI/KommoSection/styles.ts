@@ -164,17 +164,22 @@ export const Wrapper = styled.section`
   .chip-telegram { bottom: 5%; right: 1%; background: #2AABEE; animation-delay: 0.9s; }
 
   /* Responsive tweaks */
-  @media (max-width: 900px) {
+  @media (max-width: 1260px) {
     .phone { left: 0%; bottom: 15%; width: clamp(110px, 26vw, 160px); }
-    .bubble { right: 0%; top: 24%; width: clamp(120px, 24vw, 180px); }
+    .bubble { right: 1%; top: 24%; width: clamp(120px, 24vw, 180px); }
     .letter { right: 4%; bottom: 1%; width: clamp(90px, 18vw, 120px); }
     .chip { opacity: 0.9; }
   }
 
   /* Smartphone layout: stack decor above and below text */
   @media (max-width: 768px) {
+    min-height: 140svh; /* taller footprint on small screens */
+    padding: clamp(4.5rem, 18vw, 6rem) 1.5rem clamp(6rem, 20vw, 8rem);
+
     /* override grid centering on wrapper */
-    display: block; /* stop using grid on mobile */
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
 
     /* center only the in-flow text (subtitle, title, cta) */
     .hero-container {
@@ -182,9 +187,11 @@ export const Wrapper = styled.section`
       flex-direction: column;
       align-items: center;
       justify-content: center; /* vertical centering for text only */
-      min-height: 60svh;
-      padding-top: 0;
-      padding-bottom: 0;
+      text-align: center;
+      min-height: 100%;
+      gap: 1.5rem;
+      padding-top: clamp(2.5rem, 9vw, 4rem);
+      padding-bottom: clamp(3rem, 10vw, 5rem);
     }
 
 
