@@ -32,6 +32,7 @@ const GifBanner = dynamic(() => import("@/components/UI/GifBanner/GifBanner"), {
 const OffersSection = () => {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState<null | ServiceModalKey>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
 
   // Close on ESC
@@ -44,6 +45,8 @@ const OffersSection = () => {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <Wrapper>
@@ -115,6 +118,14 @@ const OffersSection = () => {
                 role="dialog"
                 aria-modal="true"
               >
+                <button
+                  type="button"
+                  className="close-btn"
+                  aria-label="Cerrar modal"
+                  onClick={() => setOpen(null)}
+                >
+                  ×
+                </button>
                 {/* Background image from the matching service */}
                 {(() => {
                   const match = offers.find((o) => {

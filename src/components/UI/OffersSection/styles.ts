@@ -301,6 +301,28 @@ export const ModalCard = styled.div`
     z-index: 2;
   }
 
+  .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(15, 20, 35, 0.65);
+    color: var(--white);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
+    transition: opacity 0.2s ease;
+
+    &:hover { opacity: 0.85; }
+    &:focus-visible { outline: 2px solid rgba(90,140,255,0.8); outline-offset: 3px; }
+  }
+
   h3 {
     margin: 0 0 0.75rem 0;
     font-size: clamp(1.35rem, 2.4vw, 1.7rem);
