@@ -33,4 +33,8 @@ export const links = [
     label: 'Servicios',
     targetId: 'servicios',
   },
+  {
+    label: 'Kommo CRM',
+    targetId: 'kommo',
+  },
 ];

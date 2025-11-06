@@ -12,6 +12,9 @@ export const Wrapper = styled.section`
   position: relative;
   padding: 1.5rem;
   background: var(--white);
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+
   &::before {
     content: "";
     position: absolute;

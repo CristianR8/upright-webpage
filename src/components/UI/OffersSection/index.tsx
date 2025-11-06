@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState, type MouseEvent } from "react";
+import { createPortal } from "react-dom";
 import {
   Wrapper,
   Inner,
@@ -31,9 +32,12 @@ const GifBanner = dynamic(() => import("@/components/UI/GifBanner/GifBanner"), {
 const OffersSection = () => {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState<null | ServiceModalKey>(null);
+  const [hasMounted, setHasMounted] = useState(false);
 
   // Close on ESC
   useEffect(() => {
+    setHasMounted(true);
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(null);
     };
@@ -103,60 +107,63 @@ const OffersSection = () => {
         ))}
       </Inner>
 
-      {open && (
-        <ModalOverlay onClick={() => setOpen(null)}>
-          <ModalCard
-            onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-          >
-            {/* Background image from the matching service */}
-            {(() => {
-              const match = offers.find((o) => {
-                const t = o.title.toLowerCase();
-                if (open === "web") return /desarrollo/.test(t);
-                if (open === "drones") return /dron/.test(t);
-                if (open === "ads") return /(google|ads|pauta)/.test(t);
-                if (open === "metaPortfolio") return /(portafolio)/.test(t);
-                if (open === "crm") return /(crm|kommo)/.test(t);
-                if (open === "automation") return /automat/.test(t);
-                if (open === "broadcast")
-                  return /(lista|difusi[oó]n|whatsapp)/.test(t);
-                if (open === "optimize")
-                  return /(optimización|plataformas)/.test(t);
-                if (open === "communication")
-                  return /(comunicaci[oó]n|redes|social)/.test(t);
-                if (open === "branding") return /branding/.test(t);
-                return false;
-              });
-              return match ? (
-                <Image
-                  className="modal-bg"
-                  src={match.illustration}
-                  alt=""
-                  fill
-                  sizes="(max-width: 768px) 92vw, 880px"
-                  priority
-                />
-              ) : null;
-            })()}
-            <div className="modal-content">
-              <h3>{serviceModals[open].title}</h3>
-              {serviceModals[open].intro.map((p, i) => (
-                <p key={`intro-${i}`}>{p}</p>
-              ))}
-              {serviceModals[open].benefitsTitle && (
-                <h4>{serviceModals[open].benefitsTitle}</h4>
-              )}
-              <ul>
-                {serviceModals[open].benefits.map((b, i) => (
-                  <li key={`b-${i}`}>{b}</li>
-                ))}
-              </ul>
-            </div>
-          </ModalCard>
-        </ModalOverlay>
-      )}
+      {hasMounted && open
+        ? createPortal(
+            <ModalOverlay onClick={() => setOpen(null)}>
+              <ModalCard
+                onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+              >
+                {/* Background image from the matching service */}
+                {(() => {
+                  const match = offers.find((o) => {
+                    const t = o.title.toLowerCase();
+                    if (open === "web") return /desarrollo/.test(t);
+                    if (open === "drones") return /dron/.test(t);
+                    if (open === "ads") return /(google|ads|pauta)/.test(t);
+                    if (open === "metaPortfolio") return /(portafolio)/.test(t);
+                    if (open === "crm") return /(crm|kommo)/.test(t);
+                    if (open === "automation") return /automat/.test(t);
+                    if (open === "broadcast")
+                      return /(lista|difusi[oó]n|whatsapp)/.test(t);
+                    if (open === "optimize")
+                      return /(optimización|plataformas)/.test(t);
+                    if (open === "communication")
+                      return /(comunicaci[oó]n|redes|social)/.test(t);
+                    if (open === "branding") return /branding/.test(t);
+                    return false;
+                  });
+                  return match ? (
+                    <Image
+                      className="modal-bg"
+                      src={match.illustration}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 92vw, 880px"
+                      priority
+                    />
+                  ) : null;
+                })()}
+                <div className="modal-content">
+                  <h3>{serviceModals[open].title}</h3>
+                  {serviceModals[open].intro.map((p, i) => (
+                    <p key={`intro-${i}`}>{p}</p>
+                  ))}
+                  {serviceModals[open].benefitsTitle && (
+                    <h4>{serviceModals[open].benefitsTitle}</h4>
+                  )}
+                  <ul>
+                    {serviceModals[open].benefits.map((b, i) => (
+                      <li key={`b-${i}`}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+              </ModalCard>
+            </ModalOverlay>,
+            document.body
+          )
+        : null}
     </Wrapper>
   );
 };

@@ -4,6 +4,12 @@ import StyledComponentsRegistry from '../../../libs/registry';
 import { GlobalStyles } from './GlobalStyles';
 import { Footer, Header } from '..';
 
+import dynamic from "next/dynamic";
+
+const WhatsAppBubble = dynamic(() => import("@/components/UI/WhatsAppBubble"), {
+  ssr: false,
+});
+
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <StyledComponentsRegistry>
@@ -16,6 +22,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <Header />
           {children}
           <Footer />
+          <WhatsAppBubble />
         </div>
       </ReactLenis>
     </StyledComponentsRegistry>

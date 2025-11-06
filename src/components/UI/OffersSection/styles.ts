@@ -22,9 +22,9 @@ export const Wrapper = styled.section`
 
   /* Background matched to HeroSection */
   background:
-    radial-gradient(1200px 800px at 10% 10%, var(--blue), transparent 90%),
-    radial-gradient(900px 700px at 90% 4%, var(--blue), transparent 90%),
-    linear-gradient(180deg, var(--indigo) 10%, var(--Background) 20%);
+    radial-gradient(1200px 800px at 10% 10%, var(--cyan), transparent 60%),
+    radial-gradient(900px 700px at 90% 4%, var(--cyan), transparent 60%),
+    linear-gradient(180deg, var(--Background) 10%, var(--Background) 20%);
 
   &::before {
     content: '';

@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* keep header above content */
   padding: 0.6rem 0; /* reduced header height */
   background-color: #000;
   border-bottom: 0.5px solid #3d3d3d;

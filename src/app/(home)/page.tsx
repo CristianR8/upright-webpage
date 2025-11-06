@@ -4,6 +4,7 @@ import {
   HeroSection,
   OffersSection,
   Message,
+  KommoSection,
 } from "@/components";
 import SectionDivider from "@/components/Common/SectionDivider";
 
@@ -25,9 +26,10 @@ export default function Home() {
         <OffersSection />
       </section>
       <SectionDivider aria-hidden="true" />
-
       <Featured />
-      {/* Section Kommo */}
+      <SectionDivider aria-hidden="true" />
+      <KommoSection />
+      <SectionDivider aria-hidden="true" />
     </main>
   );
 }

@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 
 export const Wrapper = styled.footer`
   padding-bottom: 3.5rem;
+  background: var(--Background)
 `;
 
 export const Inner = styled.main`

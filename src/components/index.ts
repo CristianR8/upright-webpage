@@ -8,3 +8,5 @@ export { default as MaskText } from './Common/MaskText';
 export { default as Featured } from './UI/Featured';
 export { default as Message } from './UI/Message';
 export { default as GifBanner } from './UI/GifBanner/GifBanner';
+export { default as KommoSection } from './UI/KommoSection';
+export { default as WhatsAppBubble } from './UI/WhatsAppBubble';
