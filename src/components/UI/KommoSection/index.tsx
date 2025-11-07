@@ -105,10 +105,10 @@ const KommoSection = () => {
                     src={pipelineIllustration}
                     alt="Embudo de ventas Kommo"
                     sizes="(max-width: 768px) 94vw, 920px"
+                    className="modal-illustration"
                     placeholder="blur"
                     priority
                     quality={100}
-                    style={{ width: '100%', height: 'auto', borderRadius: '16px', objectFit: 'cover' }}
                   />
                 </div>
                 <ModalContent>

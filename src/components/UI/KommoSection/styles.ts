@@ -277,12 +277,39 @@ export const ModalCard = styled.div`
   .modal-image {
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.45);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+  }
+
+  .modal-illustration {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
   }
 
   @media (max-width: 768px) {
     border-radius: 16px;
     padding: 1.25rem;
+  }
+
+  @media (max-height: 900px) {
+    width: min(800px, 80vw);
+    gap: 1rem;
+
+    .modal-illustration {
+      max-height: 420px;
+      object-fit: contain;
+    }
+  }
+
+  @media (max-height: 650px) {
+    width: min(500px, 60vw);
+    gap: 1rem;
+
+    .modal-illustration {
+      max-height: 420px;
+      object-fit: contain;
+    }
   }
 `;
 
