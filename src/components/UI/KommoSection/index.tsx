@@ -11,6 +11,7 @@ import {
   ModalCTA,
 } from "./styles";
 import pipelineIllustration from "@/../public/images/kommo-pipeline-ui_es.webp";
+import { useBodyScrollLock } from "../../../../libs/useBodyScrollLock";
 
 const KommoSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,6 +20,8 @@ const KommoSection = () => {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  useBodyScrollLock(isModalOpen, "kommo-modal");
 
   const closeModal = () => setIsModalOpen(false);
 
@@ -71,11 +74,12 @@ const KommoSection = () => {
             alt="Instagram"
             className="chip chip-instagram"
           />
-          {/* <img
-            src="https://upload.wikimedia.org/wikipedia/commons/a/a9/TikTok_logo.svg"
+          <img
+            src="/images/tiktok.avif"
             alt="TikTok"
             className="chip chip-tiktok"
-          /> */}
+            loading="lazy"
+          />
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
             alt="Telegram"
@@ -86,8 +90,19 @@ const KommoSection = () => {
 
       {isMounted && isModalOpen
         ? createPortal(
-            <ModalOverlay onClick={closeModal}>
+            <ModalOverlay
+              onClick={closeModal}
+              onWheel={(e) => {
+                const card = document.getElementById("kommo-modal");
+                if (!card) return;
+                // Manually scroll the card to ensure wheel works even when body is locked
+                card.scrollTop += (e as unknown as WheelEvent).deltaY || 0;
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+            >
               <ModalCard
+                id="kommo-modal"
                 onClick={(e) => e.stopPropagation()}
                 role="dialog"
                 aria-modal="true"
@@ -105,10 +120,15 @@ const KommoSection = () => {
                     src={pipelineIllustration}
                     alt="Embudo de ventas Kommo"
                     sizes="(max-width: 768px) 94vw, 920px"
-                    className="modal-illustration"
                     placeholder="blur"
                     priority
                     quality={100}
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      borderRadius: "16px",
+                      objectFit: "cover",
+                    }}
                   />
                 </div>
                 <ModalContent>

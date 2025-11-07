@@ -153,15 +153,19 @@ export const Wrapper = styled.section`
     width: clamp(35px, 4vw, 58px);
     height: clamp(35px, 4vw, 58px);
     border-radius: 50%;
-    background: #f5f5f5;
+    background: transparent;
+    padding: 0;
+    border: none;
+    object-fit: contain;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     animation: ${float} 5.5s ease-in-out infinite;
     z-index: 1; /* behind text (text z-index is 5) */
   }
 
-  .chip-gmail { top: 12%; left: 12%; animation-delay: 0s; }
-  .chip-instagram { bottom: 1%; right: 15%; animation-delay: 0.3s; }
-  .chip-telegram { bottom: 5%; right: 1%; background: #2AABEE; animation-delay: 0.9s; }
+  .chip-gmail { top: 12%; left: 12%; animation-delay: 0s; border-radius: 20%; background: var(--white)}
+  .chip-instagram { bottom: 1%; right: 15%; animation-delay: 0.3s; border-radius: 50%;}
+  .chip-telegram { bottom: 5%; right: 1%; background: #2AABEE; animation-delay: 0.9s; border-radius: 50%;}
+  .chip-tiktok { top: 18%; left: 80%; animation-delay: 0.6s; border-radius: 50%; }
 
   /* Responsive tweaks */
   @media (max-width: 1260px) {
@@ -237,6 +241,13 @@ export const Wrapper = styled.section`
       width: clamp(55px, 5vw, 78px);
       height: clamp(55px, 5vw, 78px);
     }
+    .chip-tiktok {
+      top: 8%;
+      left: 8%;
+      --tx: -10%;
+      width: clamp(55px, 5vw, 78px);
+      height: clamp(55px, 5vw, 78px);
+    }
   }
 `;
 
@@ -253,11 +264,13 @@ export const ModalOverlay = styled.div`
   place-items: center;
   padding: clamp(1rem, 4vw, 2rem);
   animation: ${fadeIn} 160ms ease-out;
+  overscroll-behavior: contain;
 `;
 
 export const ModalCard = styled.div`
   position: relative;
   width: min(960px, 92vw);
+  max-height: min(92vh, 920px);
   border-radius: 20px;
   border: 1px solid rgba(90, 140, 255, 0.35);
   background:
@@ -268,9 +281,15 @@ export const ModalCard = styled.div`
     0 40px 80px rgba(0,0,0,0.55),
     0 0 0 1px rgba(255,255,255,0.04) inset;
   padding: clamp(1.25rem, 3vw, 2.25rem);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: clamp(1.25rem, 3vw, 2rem);
   overflow: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable both-edges;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
   color: #eff6ff;
   animation: ${popIn} 160ms ease-out;
 
@@ -278,38 +297,17 @@ export const ModalCard = styled.div`
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
-  }
-
-  .modal-illustration {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
+    flex-shrink: 0;
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
   }
 
   @media (max-width: 768px) {
     border-radius: 16px;
     padding: 1.25rem;
-  }
-
-  @media (max-height: 900px) {
-    width: min(800px, 80vw);
-    gap: 1rem;
-
-    .modal-illustration {
-      max-height: 420px;
-      object-fit: contain;
-    }
-  }
-
-  @media (max-height: 650px) {
-    width: min(500px, 60vw);
-    gap: 1rem;
-
-    .modal-illustration {
-      max-height: 420px;
-      object-fit: contain;
-    }
   }
 `;
 

@@ -16,6 +16,7 @@ import {
 } from "./styles";
 import MaskText from "@/components/Common/MaskText";
 import { useIsMobile } from "../../../../libs/useIsMobile";
+import { useBodyScrollLock } from "../../../../libs/useBodyScrollLock";
 import {
   desktopHeaderPhrases,
   desktopParagraphPhrase,
@@ -32,7 +33,6 @@ const GifBanner = dynamic(() => import("@/components/UI/GifBanner/GifBanner"), {
 const OffersSection = () => {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState<null | ServiceModalKey>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
 
   // Close on ESC
@@ -46,7 +46,7 @@ const OffersSection = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const closeModal = () => setIsModalOpen(false);
+  useBodyScrollLock(Boolean(open), "offers-modal");
 
   return (
     <Wrapper>
