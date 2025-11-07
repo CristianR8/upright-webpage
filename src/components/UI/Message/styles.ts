@@ -19,7 +19,7 @@ export const Wrapper = styled.section`
   color: var(--white);
   background:
     radial-gradient(900px 700px at 85% 85%, var(--cyan), transparent 80%),
-    radial-gradient(1200px 800px at 15% 20%, var(--cyan), transparent 60%),
+    radial-gradient(1200px 800px at 15% 30%, var(--cyan), transparent 60%),
     linear-gradient(180deg, var(--Background) 60%, var(--Background) 100%);
 
   &::before {
@@ -45,7 +45,7 @@ export const Wrapper = styled.section`
 
   @media (min-width: 769px) and (max-width: 980px) {
     padding-top: clamp(4rem, 10vw, 6rem);
-    
+    background:
   }
 
   @media (max-width: 768px) {
@@ -54,8 +54,8 @@ export const Wrapper = styled.section`
     gap: clamp(2rem, 6vw, 3rem);
     padding: 4.5rem 0 1.5rem;
     background:
-    radial-gradient(450px 450px at 85% 85%, var(--cyan), transparent 80%),
-    radial-gradient(500px 500px at 15% 20%, var(--cyan), transparent 80%),
+    radial-gradient(450px 450px at 85% 85%, var(--cyan), transparent 50%),
+    radial-gradient(500px 500px at 15% 20%, var(--cyan), transparent 50%),
     linear-gradient(180deg, var(--Background) 60%, var(--Background) 100%);
 
   }

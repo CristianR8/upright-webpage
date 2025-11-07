@@ -24,9 +24,8 @@ export const Wrapper = styled.section`
   justify-content: center;
   color: var(--white);
   background:
-    radial-gradient(1200px 800px at 15% 75%, #2e2d73, transparent 60%),
-    radial-gradient(900px 700px at 85% 20%, #2e2d73, transparent 60%),
-    linear-gradient(180deg, #0b1020 80%, #000 100%);
+  
+    linear-gradient(180deg, var(--indigo) 40%, var(--cyan) 100%);
 
   &::before {
     content: '';
@@ -50,14 +49,16 @@ export const Wrapper = styled.section`
   }
 
   @media (min-width: 769px) and (max-width: 980px) {
-    padding-top: clamp(4rem, 10vw, 6rem);
+    /* Sin padding para mantener el logo centrado verticalmente */
+    padding-top: 0;
   }
 
   @media (max-width: 768px) {
-    min-height: 80svh;
+    /* Altura completa y sin padding para centrado vertical perfecto */
+    min-height: 100svh;
     flex-direction: column;
     gap: clamp(2rem, 6vw, 3rem);
-    padding: 4.5rem 0 1.5rem;
+    padding: 0;
   }
 `;
 
@@ -273,23 +274,28 @@ export const Emphasis = styled.span`
 export const LogoOnly = styled.div`
   position: relative;
   width: 100%;
-  min-height: 100svh; /* keep centered regardless of viewport */
   display: grid;
   place-items: center;
+  z-index: 2; /* sobre las partículas */
 
   img {
-    width: clamp(18rem, 36vw, 64rem);
+    width: clamp(38rem, 56vw, 84rem);
     height: auto;
     display: block;
-    /* Restore original bottom crop while keeping centered */
-    clip-path: inset(0 0 44% 0);
   }
 
   @media (max-width: 768px) {
     min-height: 80svh;
     img {
-      width: clamp(14rem, 64vw, 36rem);
-      clip-path: inset(0 0 44% 0);
+      width: clamp(24rem, 74vw, 46rem);
     }
   }
+`;
+
+/* ---------- Particles layer ---------- */
+export const ParticlesLayer = styled.canvas`
+  position: absolute;
+  inset: 0;
+  z-index: 1; /* encima de decoraciones del fondo, debajo del contenido */
+  pointer-events: none;
 `;

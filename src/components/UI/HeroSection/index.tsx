@@ -15,6 +15,7 @@ import {
 import { useIsMobile } from "../../../../libs/useIsMobile";
 import { mobileParagraphPhrases, paragraphPhrases } from "./constants";
 import upright_logo from "../../../../public/svgs/upright.svg";
+import Particles from "./Particles";
 
 const HeroSection = () => {
   const isMobile = useIsMobile();
@@ -23,6 +24,8 @@ const HeroSection = () => {
     <>
       {/* Vista 1: Solo logo a pantalla completa */}
       <Wrapper aria-label="Upright intro">
+        {/* Capa de partículas creativa, no interfiere con el contenido */}
+        <Particles />
         <LogoOnly>
           
           <Image src={upright_logo} alt="Upright" priority />

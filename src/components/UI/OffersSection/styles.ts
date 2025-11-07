@@ -46,6 +46,15 @@ export const Wrapper = styled.section`
     mask-image: radial-gradient(70% 60% at 30% 40%, black 55%, transparent 75%);
     z-index: 0;
   }
+
+  @media (max-width: 768px) {
+   
+    background:
+    radial-gradient(450px 450px at 85% 4%, var(--cyan), transparent 50%),
+    radial-gradient(500px 500px at 15% 12%, var(--cyan), transparent 50%),
+    linear-gradient(180deg, var(--Background) 60%, var(--Background) 100%);
+
+  }
 `;
 
 export const Inner = styled.div`

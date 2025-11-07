@@ -12,6 +12,20 @@ export const Wrapper = styled.section`
   color: var(--white);
   padding: clamp(2rem, 5vw, 4rem) 0;
   overflow: hidden;
+
+  /* subtle grid overlay */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 48px 48px,
+      linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 48px 48px;
+    /* fade the grid softly so it doesn’t dominate */
+    mask-image: radial-gradient(80% 70% at 50% 40%, black 55%, transparent 80%);
+  }
 `;
 
 export const Inner = styled.div`
