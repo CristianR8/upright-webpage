@@ -162,7 +162,15 @@ export const Wrapper = styled.section`
     z-index: 1; /* behind text (text z-index is 5) */
   }
 
-  .chip-gmail { top: 12%; left: 12%; animation-delay: 0s; border-radius: 20%; background: var(--white)}
+  .chip-gmail {
+    top: 12%;
+    left: 12%;
+    animation-delay: 0s;
+    background: var(--white);
+    border-radius: 10%;
+    /* keep white background within top/bottom bounds */
+    clip-path: inset(15% 4% 16% 4% round 10%);
+  }
   .chip-instagram { bottom: 1%; right: 15%; animation-delay: 0.3s; border-radius: 50%;}
   .chip-telegram { bottom: 5%; right: 1%; background: #2AABEE; animation-delay: 0.9s; border-radius: 50%;}
   .chip-tiktok { top: 18%; left: 80%; animation-delay: 0.6s; border-radius: 50%; }
@@ -226,6 +234,9 @@ export const Wrapper = styled.section`
       --tx: -120%;
       width: clamp(55px, 5vw, 78px);
       height: clamp(55px, 5vw, 78px);
+      background: var(--white);
+      border-radius: 10%;
+      clip-path: inset(6% 0 6% 0 round 10%);
     }
     .chip-instagram {
       top: 17%;
