@@ -24,8 +24,8 @@ const HeroSection = () => {
     <>
       {/* Vista 1: Solo logo a pantalla completa */}
       <Wrapper aria-label="Upright intro">
-        {/* Capa de partículas creativa, no interfiere con el contenido */}
-        <Particles />
+        {/* Capa de partículas con seguimiento del mouse en Hero */}
+        <Particles trackMouse />
         <LogoOnly>
           
           <Image src={upright_logo} alt="Upright" priority />

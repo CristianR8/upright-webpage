@@ -37,7 +37,7 @@ export const FooterMainContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3.75rem 0 3.25rem;
-  border-top: 0.0625rem solid #3d3d3d;
+  border-top: 0.0625rem solid #000000ff;
   gap: 3.25rem;
 `;
 

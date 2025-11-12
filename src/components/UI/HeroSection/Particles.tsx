@@ -18,7 +18,9 @@ type Particle = {
 
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 
-const Particles: React.FC = () => {
+type Props = { trackMouse?: boolean };
+
+const Particles: React.FC<Props> = ({ trackMouse = false }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const isMobile = useIsMobile();
 
@@ -47,6 +49,7 @@ const Particles: React.FC = () => {
 
     let particles: Particle[] = [];
     let maxLineDist = prefersReducedMotion ? 0 : (isMobile ? 100 : 140);
+    const mouse = { x: 0, y: 0, has: false };
 
     const resize = () => {
       const { clientWidth, clientHeight } = canvas.parentElement || document.body;
@@ -90,7 +93,19 @@ const Particles: React.FC = () => {
       // keep existing maxLineDist (set from user/device prefs)
     };
 
-    // Mouse interaction removed: particles move autonomously
+    // Optional mouse interaction for parallax
+    const onPointerMove = (e: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.has = true;
+    };
+    const onPointerLeave = () => { mouse.has = false; };
+
+    if (trackMouse && !prefersReducedMotion) {
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerleave", onPointerLeave);
+    }
     const ro = new ResizeObserver(resize);
     ro.observe(canvas.parentElement || canvas);
     resize();
@@ -99,9 +114,13 @@ const Particles: React.FC = () => {
       if (!running) return;
       ctx.clearRect(0, 0, width, height);
 
-      // No mouse parallax — static autonomous motion only
-      const ax = 0;
-      const ay = 0;
+      // Mouse parallax when enabled, otherwise zero influence
+      let ax = 0, ay = 0;
+      if (trackMouse && mouse.has) {
+        const parallaxFactor = isMobile ? 0.0006 : 0.0011;
+        ax = (mouse.x - centerX) * parallaxFactor;
+        ay = (mouse.y - centerY) * parallaxFactor;
+      }
 
       // Update + draw particles
       for (let p of particles) {
@@ -196,8 +215,12 @@ const Particles: React.FC = () => {
       io.disconnect();
       ro.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
+      if (trackMouse && !prefersReducedMotion) {
+        window.removeEventListener("pointermove", onPointerMove);
+        window.removeEventListener("pointerleave", onPointerLeave);
+      }
     };
-  }, [isMobile]);
+  }, [isMobile, trackMouse]);
 
   return <ParticlesLayer ref={canvasRef} aria-hidden="true" />;
 };

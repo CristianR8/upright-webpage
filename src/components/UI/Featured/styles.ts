@@ -11,7 +11,15 @@ const underlineSlide = keyframes`
 export const Wrapper = styled.section`
   position: relative;
   padding: 1.5rem;
-  background: linear-gradient(180deg, var(--blue) 0.1%, var(--white) 15%, var(--white) 50%, var(--white) 60%, var(--white) 85%, var(--Background) 100%);
+  /* smoother vertical blend without harsh plateaus */
+  background: linear-gradient(
+    180deg,
+    var(--blue) 0%,
+    var(--white) 18%,
+    var(--white) 54%,
+    var(--white) 80%,
+    var(--Background) 100%
+  );
 
   
   /* Desktop: align and size like FinancialFreedom */
