@@ -15,11 +15,21 @@ export const Wrapper = styled.section`
   background: linear-gradient(
     180deg,
     var(--blue) 0%,
-    var(--white) 18%,
-    var(--white) 54%,
-    var(--white) 80%,
     var(--Background) 100%
   );
+
+  /* subtle grid overlay across the whole section */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px,
+      linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px) 0 0 / 48px 48px;
+    mask-image: none;
+    pointer-events: none;
+    z-index: 0;
+  }
 
   
   /* Desktop: align and size like FinancialFreedom */
@@ -54,6 +64,7 @@ export const Wrapper = styled.section`
 
 export const Inner = styled.div`
   position: relative;
+  z-index: 1; /* keep content above the grid overlay */
   display: grid;
   gap: clamp(1.25rem, 3vw, 2rem);
   align-items: center;
@@ -75,13 +86,13 @@ export const Heading = styled.header`
   gap: 0.5rem;
 
   h2 {
-    color: var(--Background);
+    color: var(--white);
     /* base (mobile) size */
     font-size: clamp(1.8rem, 4vw, 2.4rem);
     font-weight: 800;
-    color: var(--Background);
+    color: var(--white);
     letter-spacing: -0.02em;
-    text-shadow: 0 8px 32px var(--white);
+    text-shadow: 0 8px 32px var(--cyan);
     position: relative;
     display: inline-block;
     margin-inline: auto;
@@ -103,7 +114,7 @@ export const Heading = styled.header`
       bottom: -0.5rem;
       height: 3px;
       border-radius: 3px;
-      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
       transform: scaleX(0);
       animation: ${underlineSlide} 900ms cubic-bezier(0.2, 0.7, 0, 1) forwards
         180ms;
@@ -162,7 +173,7 @@ export const AllyItem = styled.div`
   display: grid;
   place-items: center;
 
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
   
   img {

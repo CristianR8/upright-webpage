@@ -23,7 +23,7 @@ export const Wrapper = styled.section`
       linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px,
       linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px;
     /* fade the grid softly so it doesn’t dominate */
-    mask-image: radial-gradient(80% 70% at 50% 40%, black 55%, transparent 80%);
+    mask-image: none;
   }
 `;
 

@@ -5,7 +5,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (pathname === '/favicon.ico') {
     const url = request.nextUrl.clone();
-    url.pathname = '/images/u_isotipo-removebg-preview.png';
+    url.pathname = '/images/u_web.png';
     return NextResponse.rewrite(url);
   }
   return NextResponse.next();
@@ -14,4 +14,3 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: ['/favicon.ico'],
 };
-
