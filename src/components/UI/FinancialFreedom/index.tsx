@@ -94,7 +94,7 @@ const FinancialFreedom = () => {
           ))}
         </Edges>
 
-        <BannerCtn>
+        {/* <BannerCtn>
           <RevealCover />
           <BannerImage
             variants={imageVariants}
@@ -104,7 +104,7 @@ const FinancialFreedom = () => {
           >
             <Image src={financial_freedom_banner} alt="banner_img" fill />
           </BannerImage>
-        </BannerCtn>
+        </BannerCtn> */}
       </Inner>
     </Wrapper>
   );
