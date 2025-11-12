@@ -199,7 +199,8 @@ export const Title = styled.h1`
 `;
 
 export const Emphasis = styled.span`
-  background: var(--white);
+  background: var(--cyan);
+  color: var(--cyan);
   -webkit-background-clip: text;
   background-clip: text;
   animation: ${shimmer} 6s linear infinite;
@@ -212,7 +213,7 @@ export const Emphasis = styled.span`
     left: -2px; right: -2px; bottom: -7px;
     height: 9px;
     border-radius: 999px;
-    background: radial-gradient(32% 160% at 50% 100%, var(--white), transparent 70%);
+    background: radial-gradient(32% 160% at 50% 100%, var(--cyan), transparent 70%);
     filter: blur(7px);
     pointer-events: none;
   }
