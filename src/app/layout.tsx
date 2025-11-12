@@ -20,8 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/images/u_web.png" sizes="any" />
-        <link rel="apple-touch-icon" href="/images/u_web.png" />
+        <link rel="icon" href="/images/u_web.png?v=2" sizes="any" />
+        <link rel="apple-touch-icon" href="/images/u_web.png?v=2" />
       </head>
       <body>
         <Layout>{children}</Layout>
