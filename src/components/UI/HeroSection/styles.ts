@@ -24,7 +24,7 @@ export const Wrapper = styled.section`
   justify-content: center;
   color: var(--white);
   background:
-    linear-gradient(180deg, var(--cyan) 1%, var(--indigo) 100%);
+    linear-gradient(180deg, var(--blue) 1%, var(--indigo) 100%);
 
   &::before {
     content: '';

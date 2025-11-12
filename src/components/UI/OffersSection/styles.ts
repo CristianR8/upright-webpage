@@ -21,8 +21,8 @@ export const Wrapper = styled.section`
   padding-bottom: 6rem;
 
   /* Background matched to HeroSection */
-  background: radial-gradient(1200px 800px at 10% 10%, var(--cyan), transparent 60%),
-    radial-gradient(900px 700px at 90% 14%, var(--cyan), transparent 60%),
+  background: radial-gradient(1200px 800px at 10% 10%, var(--cyan), transparent 50%),
+    radial-gradient(900px 700px at 90% 12%, var(--cyan), transparent 80%),
     linear-gradient(180deg, var(--Background) 10%, var(--Background) 20%);
 
   &::before {
@@ -233,7 +233,7 @@ export const ModalOverlay = styled.div`
   width: 100vw;
   height: 100vh;
   background:
-    radial-gradient(120% 140% at 10% 20%, rgba(58,193,192,0.10), transparent 45%),
+    radial-gradient(120% 140% at 10% 20%, rgba(58,193,192,0.10), transparent 43%),
     radial-gradient(120% 140% at 90% 80%, rgba(90,140,255,0.10), transparent 40%),
     rgba(5, 9, 18, 0.62);
   backdrop-filter: blur(3px);
