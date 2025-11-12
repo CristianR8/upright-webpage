@@ -13,23 +13,16 @@ export default function Home() {
     <main>
       <section id="inicio" style={{ scrollMarginTop: "90px" }}>
         <HeroSection />
-        <SectionDivider aria-hidden="true" />
         <Message />
       </section>
-      <SectionDivider aria-hidden="true" />
-      <SectionDivider aria-hidden="true" />
       <section id="nosotros" style={{ scrollMarginTop: "90px" }}>
         <FinancilaFreedom />
       </section>
-      <SectionDivider aria-hidden="true" />
       <section id="servicios" style={{ scrollMarginTop: "90px" }}>
         <OffersSection />
       </section>
-      <SectionDivider aria-hidden="true" />
-      <Featured />
-      <SectionDivider aria-hidden="true" />
       <KommoSection />
-      <SectionDivider aria-hidden="true" />
+      <Featured />
     </main>
   );
 }

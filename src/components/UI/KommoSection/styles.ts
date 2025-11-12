@@ -30,14 +30,15 @@ export const Wrapper = styled.section`
   justify-items: stretch; /* keep full width */
   grid-template-columns: 1fr; /* avoid shrink-to-fit */
   padding: clamp(3.5rem, 10vw, 6.5rem) 1rem clamp(5rem, 12vw, 7.5rem);
-  min-height: 72svh;
+  /* match Message/Hero height on medium+ screens */
+  min-height: 100svh;
   color: var(--white);
 
-  /* Match HeroSection background */
-  background:
+  background: linear-gradient(180deg, var(--Background) 50%, var(--white) 100%);
+  /* background:
     radial-gradient(1200px 800px at 15% 75%, #2e2d73, transparent 60%),
     radial-gradient(900px 700px at 85% 20%, #2e2d73, transparent 60%),
-    linear-gradient(180deg, #0b1020 80%, #000 100%);
+    linear-gradient(180deg, #0b1020 80%, #000 100%); */
 
   &::before {
     content: '';
@@ -73,6 +74,23 @@ export const Wrapper = styled.section`
     position: relative;
     z-index: 5; /* keep text above any decor */
     font-family: inherit;
+  }
+
+  /* Partner badge centered above text */
+  .partner-badge {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    
+  }
+  .partner-badge img {
+    width: clamp(96px, 14vw, 160px);
+    height: auto;
+    display: block;
+    opacity: 0.95;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+    margin-bottom: 2rem;
   }
 
   .subtitle {

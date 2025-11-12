@@ -17,11 +17,18 @@ export const Wrapper = styled.section`
   align-items: center;
   justify-content: center;
   color: var(--white);
+  /* smoother cyan fade into background */
   background:
-    radial-gradient(900px 700px at 85% 85%, var(--cyan), transparent 80%),
-    radial-gradient(1200px 800px at 15% 30%, var(--cyan), transparent 60%),
-    linear-gradient(180deg, var(--Background) 60%, var(--Background) 100%);
-
+    linear-gradient(
+      180deg,
+      var(--cyan) 0%,
+      rgba(58, 193, 192, 0.55) 28%,
+      rgba(58, 193, 192, 0.30) 50%,
+      rgba(58, 193, 192, 0.14) 70%,
+      rgba(58, 193, 192, 0.06) 85%,
+      var(--Background) 100%
+    ),
+    var(--Background);
   &::before {
     content: '';
     position: absolute;
@@ -54,8 +61,8 @@ export const Wrapper = styled.section`
     gap: clamp(2rem, 6vw, 3rem);
     padding: 4.5rem 0 1.5rem;
     background:
-    radial-gradient(450px 450px at 85% 85%, var(--cyan), transparent 50%),
-    radial-gradient(500px 500px at 15% 20%, var(--cyan), transparent 50%),
+    radial-gradient(450px 450px at 85% 85%, rgba(58, 193, 192, 0.45), transparent 62%),
+    radial-gradient(500px 500px at 15% 20%, rgba(58, 193, 192, 0.45), transparent 62%),
     linear-gradient(180deg, var(--Background) 60%, var(--Background) 100%);
 
   }
@@ -194,10 +201,9 @@ export const Title = styled.h1`
 `;
 
 export const Emphasis = styled.span`
-  background: var(--cyan);
+  background: var(--white);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
   animation: ${shimmer} 6s linear infinite;
   background-size: 200% 100%;
   position: relative;
@@ -208,9 +214,8 @@ export const Emphasis = styled.span`
     left: -2px; right: -2px; bottom: -7px;
     height: 9px;
     border-radius: 999px;
-    background: radial-gradient(32% 160% at 50% 100%, #3ac1c0, transparent 70%);
+    background: radial-gradient(32% 160% at 50% 100%, var(--white), transparent 70%);
     filter: blur(7px);
     pointer-events: none;
   }
 `;
-

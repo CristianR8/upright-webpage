@@ -16,6 +16,7 @@ import RevealCover from "@/components/Common/RevealCover";
 import { BannerImage } from "./styles";
 import { useIsMobile } from "../../../../libs/useIsMobile";
 import financial_freedom_banner from "../../../../public/images/financial_freedom_banner.png";
+import Particles from "@/components/UI/HeroSection/Particles";
 import {
   desktopBriefNotePhrase,
   desktopHeaderPhrase,
@@ -57,6 +58,7 @@ const FinancialFreedom = () => {
 
   return (
     <Wrapper>
+      <Particles />
       <Inner>
         <Header>
           {isMobile ? (

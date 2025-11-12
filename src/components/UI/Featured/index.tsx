@@ -12,6 +12,7 @@ import {
   Heading,
 } from "./styles";
 import { alliesImages } from "./constants";
+// particles removidos aquí para mejorar rendimiento del carrusel
 
 const Featured = () => {
   const [hover, setHover] = useState(false);

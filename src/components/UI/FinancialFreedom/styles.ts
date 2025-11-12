@@ -6,9 +6,8 @@ import { motion, Variants } from 'framer-motion';
 export const Wrapper = styled.section`
   position: relative;
   isolation: isolate;
-  background: radial-gradient(1200px 800px at 15% 55%, var(--blue), transparent 50%),
-              radial-gradient(900px 700px at 85% 40%, var(--blue), transparent 50%),
-              linear-gradient(180deg, #000000b3 0%, var(--Background) 50%);
+  background: linear-gradient(180deg, var(--Background) 30%, var(--indigo) 100%);
+
   color: var(--white);
   padding: clamp(2rem, 5vw, 4rem) 0;
   overflow: hidden;

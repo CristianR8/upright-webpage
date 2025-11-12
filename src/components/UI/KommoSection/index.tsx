@@ -12,6 +12,7 @@ import {
 } from "./styles";
 import pipelineIllustration from "@/../public/images/kommo-pipeline-ui_es.webp";
 import { useBodyScrollLock } from "../../../../libs/useBodyScrollLock";
+import Particles from "@/components/UI/HeroSection/Particles";
 
 const KommoSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,7 +28,11 @@ const KommoSection = () => {
 
   return (
     <Wrapper id="kommo" style={{ scrollMarginTop: '90px' }}>
+      <Particles />
       <div className="hero-container">
+        <div className="partner-badge" aria-hidden="false">
+          <img src="/partner/Badge_dark.svg" alt="Partner oficial" />
+        </div>
         {/* texto principal */}
         <p className="subtitle">CRM de ventas conversacionales</p>
 

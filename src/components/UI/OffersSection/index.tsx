@@ -29,6 +29,7 @@ import dynamic from "next/dynamic";
 const GifBanner = dynamic(() => import("@/components/UI/GifBanner/GifBanner"), {
   ssr: false, // importante
 });
+// Particles removed here to improve performance
 
 const OffersSection = () => {
   const isMobile = useIsMobile();

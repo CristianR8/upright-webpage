@@ -13,12 +13,14 @@ import {
 import MaskText from "@/components/Common/MaskText";
 import { useIsMobile } from "../../../../libs/useIsMobile";
 import { mobileParagraphPhrases, paragraphPhrases } from "../HeroSection/constants";
+import Particles from "@/components/UI/HeroSection/Particles";
 
 const Message = () => {
   const isMobile = useIsMobile();
 
   return (
     <Wrapper aria-labelledby="message-title">
+      <Particles />
       <Inner>
         <HeroContent>
           <HeroTextContainer>

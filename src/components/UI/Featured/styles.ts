@@ -12,8 +12,21 @@ export const Wrapper = styled.section`
   position: relative;
   padding: 1.5rem;
   background: var(--white);
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
+  
+  /* Desktop: align and size like FinancialFreedom */
+  @media (min-width: 769px) {
+    /* approximate FinancialFreedom banner height */
+    --ff-height: clamp(18rem, 42vw, 28rem);
+    /* room for heading + spacing */
+    min-height: calc(var(--ff-height) + clamp(4rem, 6vw, 6rem));
+    display: grid;
+    align-items: center;
+  }
+  
+  /* match Message/Hero height on medium+ screens only */
+  @media (min-width: 769px) {
+    min-height: 100svh;
+  }
 
   &::before {
     content: "";
@@ -31,9 +44,15 @@ export const Inner = styled.div`
   gap: clamp(1.25rem, 3vw, 2rem);
   align-items: center;
   margin: 0 auto;
-  max-width: 1200px;
-  width: min(92vw, 1200px);
-  padding: 0;
+  max-width: 1400px;
+  width: min(96vw, 1400px);
+
+  @media (min-width: 769px) {
+    /* let the carousel occupy the vertical space and center */
+    min-height: var(--ff-height);
+    grid-template-rows: auto 1fr;
+    align-content: center;
+  }
 `;
 
 export const Heading = styled.header`
@@ -43,6 +62,7 @@ export const Heading = styled.header`
 
   h2 {
     color: var(--Background);
+    /* base (mobile) size */
     font-size: clamp(1.8rem, 4vw, 2.4rem);
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -52,7 +72,12 @@ export const Heading = styled.header`
     margin-inline: auto;
     text-transform: uppercase;
     opacity: 0.9;
-    margin: 0; /* avoid extra top/bottom margin */
+    margin: 0; 
+
+    /* larger only on md+ */
+    @media (min-width: 769px) {
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+    }
 
     /* subrayado cian animado */
     &::after {
@@ -63,7 +88,7 @@ export const Heading = styled.header`
       bottom: -0.5rem;
       height: 3px;
       border-radius: 3px;
-      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
       transform: scaleX(0);
       animation: ${underlineSlide} 900ms cubic-bezier(0.2, 0.7, 0, 1) forwards
         180ms;
@@ -74,13 +99,18 @@ export const Heading = styled.header`
 /* ---------- Carrusel ---------- */
 export const ParallaxWrap = styled.div`
   position: relative;
-  margin: 0 auto;
   width: 100%;
   display: block;
   overflow: hidden;
   /* spacing token shared between items and seam */
-  --ally-gap: clamp(0.6rem, 1.4vw, 1rem);
+  --ally-gap: clamp(2rem, 2vw, 1.5rem);
 
+  @media (min-width: 769px) {
+    /* match FinancialFreedom banner height and center row */
+    height: var(--ff-height);
+    display: grid;
+    place-items: center;
+  }
 
   /* máscara lateral para fade elegante */
   mask-image: linear-gradient(
@@ -103,12 +133,16 @@ export const CarouselRow = styled.div`
   align-items: center;
   gap: var(--ally-gap);
   padding: 0.5rem 0;
+
+  @media (min-width: 769px) {
+    height: 100%;
+  }
 `;
 
 export const AllyItem = styled.div`
   position: relative;
-  width: clamp(180px, 22vw, 300px);
-  height: clamp(80px, 20vw, 300px);
+  width: clamp(220px, 26vw, 380px);
+  height: clamp(120px, 24vw, 310px);
   flex: 0 0 auto;
   display: grid;
   place-items: center;
@@ -130,8 +164,8 @@ export const AllyItem = styled.div`
   }
 
   @media (max-width: 768px) {
-  width: clamp(180px, 22vw, 300px);
-  height: clamp(100px, 30vw, 300px);
+    width: clamp(180px, 22vw, 300px);
+    height: clamp(100px, 30vw, 300px);
     img {
       filter: none !important;
     }
