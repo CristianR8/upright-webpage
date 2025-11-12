@@ -61,6 +61,14 @@ const OffersSection = () => {
         ).map((pair, index) => (
           <Offers key={`offers-row-${index}`}>
             {pair.map((offer) => {
+              const whiteBorderTitles = new Set([
+                'Implementación de CRM (Kommo)',
+                'Ajustes del Portafolio Comercial de Meta',
+                'Automatizaciones Multicanal',
+                'Optimización de Plataformas Digitales',
+              ]);
+              const whiteBorder = whiteBorderTitles.has(offer.title);
+              const noBorderBuy = offer.title === 'Pauta en Meta Ads & Google Ads';
               const openForOffer = () => {
                 const t = offer.title.toLowerCase();
                 if (/desarrollo/.test(t)) setOpen("web");
@@ -89,6 +97,7 @@ const OffersSection = () => {
                   <ButtonsRow>
                     <ActionButton
                       $variant="indigo"
+                      $whiteBorder={whiteBorder}
                       type="button"
                       onClick={openForOffer}
                     >
@@ -100,6 +109,8 @@ const OffersSection = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       $variant="gray"
+                      $whiteBorder={whiteBorder}
+                      $noBorder={noBorderBuy}
                     >
                       Adquirir
                     </ActionButton>

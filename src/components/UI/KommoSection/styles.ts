@@ -55,8 +55,8 @@ export const Wrapper = styled.section`
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px,
-      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px;
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px,
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px;
     mask-image: radial-gradient(70% 60% at 30% 40%, black 55%, transparent 75%);
     z-index: 0;
   }
@@ -85,7 +85,7 @@ export const Wrapper = styled.section`
     
   }
   .partner-badge img {
-    width: clamp(96px, 14vw, 160px);
+    width: clamp(86px, 14vw, 120px);
     height: auto;
     display: block;
     opacity: 0.95;

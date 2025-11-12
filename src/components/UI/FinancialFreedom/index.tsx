@@ -17,6 +17,7 @@ import { BannerImage } from "./styles";
 import { useIsMobile } from "../../../../libs/useIsMobile";
 import financial_freedom_banner from "../../../../public/images/financial_freedom_banner.png";
 import Particles from "@/components/UI/HeroSection/Particles";
+import { FaMagnifyingGlass, GiBullseye, TbArrowsSort } from "./Icons";
 import {
   desktopBriefNotePhrase,
   desktopHeaderPhrase,
@@ -86,7 +87,7 @@ const FinancialFreedom = () => {
               whileHover="hover"
             >
               <Title>
-                <Image src={edge.icon} alt="icon" />
+                {i === 0 ? <FaMagnifyingGlass /> : i === 1 ? <GiBullseye /> : <TbArrowsSort />}
                 <MaskText phrases={[edge.point]} tag="h3" />
               </Title>
               <MaskText phrases={[edge.details]} tag="p" />

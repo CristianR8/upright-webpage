@@ -24,7 +24,7 @@ export const Wrapper = styled.section`
   justify-content: center;
   color: var(--white);
   background:
-    linear-gradient(180deg, var(--indigo) 40%, var(--cyan) 100%);
+    linear-gradient(180deg, var(--cyan) 1%, var(--indigo) 100%);
 
   &::before {
     content: '';
@@ -41,8 +41,8 @@ export const Wrapper = styled.section`
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px,
-      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px;
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px,
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px;
     mask-image: radial-gradient(70% 60% at 30% 40%, black 55%, transparent 75%);
     z-index: 0;
   }
@@ -278,7 +278,7 @@ export const LogoOnly = styled.div`
   z-index: 2; /* sobre las partículas */
 
   img {
-    width: clamp(38rem, 56vw, 84rem);
+    width: clamp(28rem, 46vw, 74rem);
     height: auto;
     display: block;
   }

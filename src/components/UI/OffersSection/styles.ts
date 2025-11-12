@@ -21,7 +21,9 @@ export const Wrapper = styled.section`
   padding-bottom: 6rem;
 
   /* Background matched to HeroSection */
-  background: linear-gradient(180deg, var(--indigo) 30%, var(--Background) 100%);
+  background: radial-gradient(1200px 800px at 10% 10%, var(--cyan), transparent 60%),
+    radial-gradient(900px 700px at 90% 14%, var(--cyan), transparent 60%),
+    linear-gradient(180deg, var(--Background) 10%, var(--Background) 20%);
 
   &::before {
     content: '';
@@ -38,9 +40,11 @@ export const Wrapper = styled.section`
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px,
-      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px;
-    mask-image: radial-gradient(70% 60% at 30% 40%, black 55%, transparent 75%);
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px,
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px;
+    /* ensure grid is visible across the whole section */
+    mask-image: none;
+    pointer-events: none;
     z-index: 0;
   }
 
@@ -73,11 +77,11 @@ export const Header = styled.header`
   align-items: center;
   gap: 1.5rem;
   text-align: center;
-  max-width: 56rem;
+  max-width: 86rem;
   margin: 0 auto 2rem; /* reduced spacing below header to bring banner closer */
 
   h1 {
-    font-size: 4.75rem;
+    font-size: 4rem;
     font-weight: 400;
   }
 
@@ -116,9 +120,16 @@ export const ButtonsRow = styled.div`
   }
 `;
 
-export const ActionButton = styled.button<{ $variant: 'indigo' | 'gray' }>`
+export const ActionButton = styled.button<{ $variant: 'indigo' | 'gray'; $whiteBorder?: boolean; $noBorder?: boolean }>`
   appearance: none;
-  border: ${({ $variant }) => ($variant === 'gray' ? '1px solid var(--Background)' : 'none')};
+  border: ${({ $variant, $whiteBorder, $noBorder }) =>
+    $noBorder
+      ? 'none'
+      : $whiteBorder
+      ? '1px solid var(--white)'
+      : $variant === 'gray'
+      ? '1px solid var(--Background)'
+      : 'none'};
   cursor: pointer;
   padding: 0.8rem 1.25rem; 
   border-radius: 999px;
@@ -130,7 +141,6 @@ export const ActionButton = styled.button<{ $variant: 'indigo' | 'gray' }>`
 
   color: ${({ $variant }) => ($variant === 'indigo' ? 'var(--white)' : 'var(--blue)')};
   background: ${({ $variant }) => ($variant === 'indigo' ? 'var(--blue)' : 'var(--gray)')};
-  box-shadow: 0 10px 22px rgba(0,0,0,0.35);
 
   &:hover { transform: translateY(-1px); opacity: 0.95; }
   &:active { transform: translateY(0); opacity: 0.9; }
@@ -293,7 +303,7 @@ export const ModalCard = styled.div`
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
-    object-position: 50% 40%; /* move visual focus slightly upward */
+    object-position: 50% 50%; /* center the image vertically */
     border-radius: inherit;
     z-index: 0;
     filter: saturate(0.9) brightness(0.9);

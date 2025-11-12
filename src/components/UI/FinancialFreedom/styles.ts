@@ -6,7 +6,7 @@ import { motion, Variants } from 'framer-motion';
 export const Wrapper = styled.section`
   position: relative;
   isolation: isolate;
-  background: linear-gradient(180deg, var(--Background) 30%, var(--indigo) 100%);
+  background: linear-gradient(180deg, var(--indigo) 30%, var(--Background) 100%);
 
   color: var(--white);
   padding: clamp(2rem, 5vw, 4rem) 0;
@@ -20,8 +20,8 @@ export const Wrapper = styled.section`
     pointer-events: none;
     z-index: 0;
     background:
-      linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 48px 48px,
-      linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 48px 48px;
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px,
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px;
     /* fade the grid softly so it doesn’t dominate */
     mask-image: radial-gradient(80% 70% at 50% 40%, black 55%, transparent 80%);
   }
@@ -100,7 +100,9 @@ export const Edges = styled.div`
   gap: clamp(0.9rem, 1.8vw, 1.25rem);
   align-items: stretch;                     
   justify-items: stretch;
-  grid-auto-rows: 1fr;                       
+  /* ensure uniform card heights across rows */
+  --edge-h: clamp(9rem, 18vw, 12rem);
+  grid-auto-rows: var(--edge-h);
 
   @media (min-width: 640px) {               
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -131,6 +133,9 @@ export const EdgeBase= styled(motion.article as unknown as 'article')`
   display: grid;
   gap: 0.5rem;
   transform-origin: center;
+  /* fill the auto-rows height so all cards match */
+  height: 100%;
+  min-height: var(--edge-h);
 
   /* idle float stagger by position */
   animation: edgeFloat 8s ease-in-out infinite;
@@ -203,6 +208,13 @@ export const Title = styled.div`
   gap: .6rem;
 
   h3 {
+    color: var(--white);
+  }
+
+  /* size + color for inline SVG icons */
+  svg {
+    width: 24px;
+    height: 24px;
     color: var(--white);
   }
 `;
