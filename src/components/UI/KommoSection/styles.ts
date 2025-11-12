@@ -34,7 +34,7 @@ export const Wrapper = styled.section`
   min-height: 100svh;
   color: var(--white);
 
-  background: linear-gradient(180deg, var(--Background) 50%, var(--white) 100%);
+  background: linear-gradient(180deg, var(--Background) 40%, var(--blue) 100%);
   /* background:
     radial-gradient(1200px 800px at 15% 75%, #2e2d73, transparent 60%),
     radial-gradient(900px 700px at 85% 20%, #2e2d73, transparent 60%),
@@ -112,7 +112,7 @@ export const Wrapper = styled.section`
 
   .cta {
     appearance: none;
-    border: none;
+    border: 1px solid var(--white);
     cursor: pointer;
     padding: 0.8rem 1.25rem;
     border-radius: 999px;
@@ -123,7 +123,7 @@ export const Wrapper = styled.section`
     background: var(--blue);
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
     transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-    &:hover { transform: translateY(-1px); opacity: 0.95; }
+    &:hover { transform: translateY(-1px); opacity: 0.95; border-color: #fff; }
     &:active { transform: translateY(0); opacity: 0.9; }
     &:focus-visible { outline: 2px solid rgba(58,193,192,0.6); outline-offset: 2px; }
 

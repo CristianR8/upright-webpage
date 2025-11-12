@@ -11,7 +11,8 @@ const underlineSlide = keyframes`
 export const Wrapper = styled.section`
   position: relative;
   padding: 1.5rem;
-  background: var(--white);
+  background: linear-gradient(180deg, var(--blue) 0.1%, var(--white) 15%, var(--white) 50%, var(--white) 60%, var(--white) 85%, var(--Background) 100%);
+
   
   /* Desktop: align and size like FinancialFreedom */
   @media (min-width: 769px) {
@@ -25,7 +26,12 @@ export const Wrapper = styled.section`
   
   /* match Message/Hero height on medium+ screens only */
   @media (min-width: 769px) {
-    min-height: 100svh;
+    min-height: 90svh;
+  }
+
+  @media (max-width: 768px){
+     background: linear-gradient(180deg, var(--white) 0.2%, var(--white) 100%);
+
   }
 
   &::before {
@@ -65,8 +71,9 @@ export const Heading = styled.header`
     /* base (mobile) size */
     font-size: clamp(1.8rem, 4vw, 2.4rem);
     font-weight: 800;
+    color: var(--Background);
     letter-spacing: -0.02em;
-    text-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 8px 32px var(--white);
     position: relative;
     display: inline-block;
     margin-inline: auto;

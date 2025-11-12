@@ -25,10 +25,10 @@ export const links = [
     label: 'Inicio',
     targetId: 'inicio',
   },
-  {
+  /* {
     label: 'Nosotros',
     targetId: 'nosotros',
-  },
+  }, */
   {
     label: 'Servicios',
     targetId: 'servicios',

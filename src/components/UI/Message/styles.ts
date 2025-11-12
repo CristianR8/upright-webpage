@@ -17,7 +17,6 @@ export const Wrapper = styled.section`
   align-items: center;
   justify-content: center;
   color: var(--white);
-  /* smoother cyan fade into background */
   background:
     linear-gradient(
       180deg,
@@ -59,9 +58,7 @@ export const Wrapper = styled.section`
     gap: clamp(2rem, 6vw, 3rem);
     padding: 4.5rem 0 1.5rem;
     background:
-    radial-gradient(450px 450px at 85% 85%, rgba(58, 193, 192, 0.45), transparent 62%),
-    radial-gradient(500px 500px at 15% 20%, rgba(58, 193, 192, 0.45), transparent 62%),
-    linear-gradient(180deg, var(--Background) 60%, var(--Background) 100%);
+    linear-gradient(180deg, var(--indigo) 60%, var(--indigo) 100%);
 
   }
 `;

@@ -21,8 +21,8 @@ export const Wrapper = styled.section`
   padding-bottom: 6rem;
 
   /* Background matched to HeroSection */
-  background: radial-gradient(1200px 800px at 10% 10%, var(--cyan), transparent 50%),
-    radial-gradient(900px 700px at 90% 12%, var(--cyan), transparent 80%),
+  background:  radial-gradient(1200px 800px at 10% 12%, var(--cyan), transparent 40%),
+    radial-gradient(900px 700px at 85% 9%, var(--cyan), transparent 40%), 
     linear-gradient(180deg, var(--Background) 10%, var(--Background) 20%);
 
   &::before {
@@ -51,8 +51,8 @@ export const Wrapper = styled.section`
   @media (max-width: 768px) {
    
     background:
-    radial-gradient(450px 450px at 85% 4%, var(--cyan), transparent 50%),
-    radial-gradient(500px 500px at 15% 12%, var(--cyan), transparent 50%),
+    radial-gradient(450px 450px at 85% 4%, var(--cyan), transparent 40%),
+    radial-gradient(500px 500px at 15% 12%, var(--cyan), transparent 40%),
     linear-gradient(180deg, var(--Background) 60%, var(--Background) 100%);
 
   }
@@ -77,12 +77,21 @@ export const Header = styled.header`
   align-items: center;
   gap: 1.5rem;
   text-align: center;
-  max-width: 86rem;
+  max-width: 100%;
   margin: 0 auto 2rem; /* reduced spacing below header to bring banner closer */
 
   h1 {
-    font-size: 4rem;
-    font-weight: 400;
+    /* keep each phrase on a single line */
+    white-space: nowrap;
+    /* match mobile header style (FF section) */
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--white);
+    text-shadow: 0 4px 18px rgba(0,0,0,0.45);
+    /* responsive size while keeping 2-line logic */
+    font-size: clamp(1.4rem, 3.8vw, 3.2rem);
+    font-weight: 800;
   }
 
   p {
@@ -94,9 +103,7 @@ export const Header = styled.header`
   }
 
   @media (max-width: 768px) {
-    h1 {
-      font-size: 2.25rem;
-    }
+    h1 { font-size: clamp(1rem, 6vw, 1.9rem); }
 
     p {
       font-size: 1rem;
