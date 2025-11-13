@@ -7,18 +7,12 @@ import ic_chevron_down from "../../../../public/svgs/ic_chevron_down.svg";
 import ic_copyright from "../../../../public/svgs/ic_copyright.svg";
 
 const linksArr = [
+  
   {
-    title: "About us",
-    links: ["Our Company", "Careers", "Press kits"],
+    title: "Sobre nosotros",
+    links: ["Inicio", "Servicios", "Kommo CRM"],
   },
-  {
-    title: "Legal",
-    links: ["Terms of use", "Privacy policy", "About us"],
-  },
-  {
-    title: "About us",
-    links: ["Contact us", "FAQ"],
-  },
+  
 ];
 
 import {
@@ -40,6 +34,21 @@ import {
 } from "./styles";
 
 const Footer = () => {
+  const handleNavClick = (targetId: string) => {
+    const section = document.getElementById(targetId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const toId = (label: string) => {
+    const t = label.toLowerCase();
+    if (/^inicio/.test(t)) return 'inicio';
+    if (/servicios/.test(t)) return 'servicios';
+    if (/kommo/.test(t)) return 'kommo';
+    return '';
+  };
+
   return (
     <Wrapper>
       <Inner>
@@ -53,9 +62,16 @@ const Footer = () => {
                 <GridColumn key={i}>
                   <h3>{l.title}</h3>
                   <LinksContainer>
-                    {l.links.map((link, i) => (
-                      <li key={i}>{link}</li>
-                    ))}
+                    {l.links.map((link, i) => {
+                      const id = toId(link);
+                      return (
+                        <li key={i}>
+                          <button type="button" onClick={() => id && handleNavClick(id)}>
+                            {link}
+                          </button>
+                        </li>
+                      );
+                    })}
                   </LinksContainer>
                 </GridColumn>
               ))}

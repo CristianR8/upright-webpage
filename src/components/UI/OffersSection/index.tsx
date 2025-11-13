@@ -13,6 +13,7 @@ import {
   CardImage,
   ModalOverlay,
   ModalCard,
+  BannerArea,
 } from "./styles";
 import MaskText from "@/components/Common/MaskText";
 import { useIsMobile } from "../../../../libs/useIsMobile";
@@ -55,7 +56,9 @@ const OffersSection = () => {
         <Header>
           <MaskText phrases={desktopHeaderPhrases} tag="h1" />
         </Header>
-        <GifBanner />
+        <BannerArea>
+          <GifBanner />
+        </BannerArea>
         {Array.from({ length: Math.ceil(offers.length / 2) }, (_, idx) =>
           offers.slice(idx * 2, idx * 2 + 2)
         ).map((pair, index) => (

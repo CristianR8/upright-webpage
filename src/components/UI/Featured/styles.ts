@@ -48,8 +48,14 @@ export const Wrapper = styled.section`
   }
 
   @media (max-width: 768px){
-     background: linear-gradient(180deg, var(--white) 0.2%, var(--white) 100%);
-
+     background: linear-gradient(
+    180deg,
+    var(--blue) 0%,
+    var(--Background) 100%
+  );
+  min-height: 60svh;
+  display: grid;
+  align-items: center;
   }
 
   &::before {
@@ -189,9 +195,9 @@ export const AllyItem = styled.div`
     filter: grayscale(0) opacity(1);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     width: clamp(180px, 22vw, 300px);
-    height: clamp(100px, 30vw, 300px);
+    height: clamp(110px, 40vw, 350px);
     img {
       filter: none !important;
     }

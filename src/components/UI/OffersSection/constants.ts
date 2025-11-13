@@ -11,8 +11,9 @@ import service10 from '../../../../public/services/10.png';
 
 // For desktop
 export const desktopHeaderPhrases = [
-  'Servicios que impulsan el crecimiento',
-  'digital de tu marca o empresa',
+  'Servicios que impulsan el',
+  'crecimiento digital de tu',
+  'marca o empresa',
 ];
 export const desktopParagraphPhrase = [
   'Creamos soluciones integrales que combinan estrategia, tecnología y creatividad para que tu marca avance con confianza.',

@@ -46,6 +46,7 @@ export const FooterMiddle = styled.div`
   justify-content: space-between;
   width: 100%;
   gap: 2rem;
+  align-items: flex-start;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -123,6 +124,18 @@ export const LinksContainer = styled.ul`
     font-weight: 400;
     cursor: pointer;
     position: relative;
+    line-height: 1.4;
+
+    button {
+      appearance: none;
+      background: none;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
 
     &::after {
       position: absolute;

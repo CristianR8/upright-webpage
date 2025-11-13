@@ -1,7 +1,7 @@
-'use client';
-import Image from 'next/image';
-import { styled } from 'styled-components';
-import { keyframes } from 'styled-components';
+"use client";
+import Image from "next/image";
+import { styled } from "styled-components";
+import { keyframes } from "styled-components";
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -20,13 +20,15 @@ export const Wrapper = styled.section`
   overflow: hidden;
   padding-bottom: 6rem;
 
-  /* Background matched to HeroSection */
-  background:  radial-gradient(1200px 800px at 10% 12%, var(--cyan), transparent 40%),
-    radial-gradient(900px 700px at 85% 9%, var(--cyan), transparent 40%), 
-    linear-gradient(180deg, var(--Background) 10%, var(--Background) 20%);
+  /* Section background (no spotlight; spotlight is tied to banner) */
+  background: linear-gradient(
+    180deg,
+    var(--Background) 10%,
+    var(--Background) 20%
+  );
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
@@ -36,12 +38,17 @@ export const Wrapper = styled.section`
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px,
-      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 48px 48px;
+    background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 1px
+        )
+        0 0 / 48px 48px,
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px)
+        0 0 / 48px 48px;
     /* ensure grid is visible across the whole section */
     mask-image: none;
     pointer-events: none;
@@ -49,12 +56,11 @@ export const Wrapper = styled.section`
   }
 
   @media (max-width: 768px) {
-   
-    background:
-    radial-gradient(450px 450px at 85% 4%, var(--cyan), transparent 40%),
-    radial-gradient(500px 500px at 15% 12%, var(--cyan), transparent 40%),
-    linear-gradient(180deg, var(--Background) 60%, var(--Background) 100%);
-
+    background: linear-gradient(
+      180deg,
+      var(--Background) 60%,
+      var(--Background) 100%
+    );
   }
 `;
 
@@ -71,6 +77,53 @@ export const Inner = styled.div`
   }
 `;
 
+export const BannerArea = styled.div`
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  margin-bottom: 1rem;
+  overflow: visible; /* allow halo to extend */
+  padding: 1rem 0; /* add breathing room so it doesn't look cut */
+
+  &::before {
+    --halo-size: clamp(320px, 56vw, 640px);
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* big canvas so rectangle edges are off-screen */
+    width: 160vmax;
+    height: 160vmax;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+      var(--halo-size) var(--halo-size) at 50% 50%,
+      var(--cyan),
+      transparent 44%
+    );
+    pointer-events: none;
+    z-index: -100;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.75rem;
+    padding: 0.75rem 0;
+
+    &::before {
+      --halo-size: clamp(420px, 56vw, 740px);
+      width: 180vmax;
+      height: 180vmax;
+      top: 40%;
+      left: 50%;
+      background: radial-gradient(
+        var(--halo-size) var(--halo-size) at 50% 50%,
+        var(--cyan),
+        transparent 60%
+      );
+    }
+  }
+`;
+
 export const Header = styled.header`
   display: flex;
   flex-direction: column;
@@ -78,19 +131,17 @@ export const Header = styled.header`
   gap: 1.5rem;
   text-align: center;
   max-width: 100%;
-  margin: 0 auto 2rem; /* reduced spacing below header to bring banner closer */
+  margin: 0 auto 2.5rem; /* reduced spacing below header to bring banner closer */
 
   h1 {
-    /* keep each phrase on a single line */
     white-space: nowrap;
-    /* match mobile header style (FF section) */
     line-height: 1.06;
     letter-spacing: -0.02em;
     margin: 0;
     color: var(--white);
-    text-shadow: 0 4px 18px rgba(0,0,0,0.45);
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
     /* responsive size while keeping 2-line logic */
-    font-size: clamp(1.4rem, 3.8vw, 3.2rem);
+    font-size: clamp(3.4rem, 5vw, 4.8rem);
     font-weight: 800;
   }
 
@@ -102,8 +153,10 @@ export const Header = styled.header`
     line-height: 1.75rem;
   }
 
-  @media (max-width: 768px) {
-    h1 { font-size: clamp(1rem, 6vw, 1.9rem); }
+  @media (max-width: 610px) {
+    h1 {
+      font-size: clamp(1.8rem, 10vw, 2rem);
+    }
 
     p {
       font-size: 1rem;
@@ -115,7 +168,7 @@ export const Header = styled.header`
 export const ButtonsRow = styled.div`
   position: absolute;
   left: 50%;
-  top: 34%; 
+  top: 34%;
   transform: translate(-50%, -50%);
   display: flex;
   gap: 0.5rem;
@@ -123,22 +176,25 @@ export const ButtonsRow = styled.div`
 
   @media (max-width: 768px) {
     top: 36%;
-    
   }
 `;
 
-export const ActionButton = styled.button<{ $variant: 'indigo' | 'gray'; $whiteBorder?: boolean; $noBorder?: boolean }>`
+export const ActionButton = styled.button<{
+  $variant: "indigo" | "gray";
+  $whiteBorder?: boolean;
+  $noBorder?: boolean;
+}>`
   appearance: none;
   border: ${({ $variant, $whiteBorder, $noBorder }) =>
     $noBorder
-      ? 'none'
+      ? "none"
       : $whiteBorder
-      ? '1px solid var(--white)'
-      : $variant === 'gray'
-      ? '1px solid var(--Background)'
-      : 'none'};
+      ? "1px solid var(--white)"
+      : $variant === "gray"
+      ? "1px solid var(--Background)"
+      : "none"};
   cursor: pointer;
-  padding: 0.8rem 1.25rem; 
+  padding: 0.8rem 1.25rem;
   border-radius: 999px;
   font-size: 1.1rem;
   font-weight: 600;
@@ -146,12 +202,23 @@ export const ActionButton = styled.button<{ $variant: 'indigo' | 'gray'; $whiteB
   font-family: inherit; /* match site font */
   transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 
-  color: ${({ $variant }) => ($variant === 'indigo' ? 'var(--white)' : 'var(--blue)')};
-  background: ${({ $variant }) => ($variant === 'indigo' ? 'var(--blue)' : 'var(--gray)')};
+  color: ${({ $variant }) =>
+    $variant === "indigo" ? "var(--white)" : "var(--blue)"};
+  background: ${({ $variant }) =>
+    $variant === "indigo" ? "var(--blue)" : "var(--gray)"};
 
-  &:hover { transform: translateY(-1px); opacity: 0.95; }
-  &:active { transform: translateY(0); opacity: 0.9; }
-  &:focus-visible { outline: 2px solid rgba(58,193,192,0.6); outline-offset: 2px; }
+  &:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+  }
+  &:active {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+  &:focus-visible {
+    outline: 2px solid rgba(58, 193, 192, 0.6);
+    outline-offset: 2px;
+  }
 
   @media (max-width: 768px) {
     font-size: 0.7rem;
@@ -188,23 +255,23 @@ export const OfferCard = styled.div`
   flex: 1;
   position: relative;
   background: linear-gradient(
-      180deg,
-      rgba(46, 45, 115, 0.35) 0%,
-      rgba(14, 1, 66, 0.6) 45%,
-      rgba(10, 10, 10, 0.92) 100%
-    );
+    180deg,
+    rgba(46, 45, 115, 0.35) 0%,
+    rgba(14, 1, 66, 0.6) 45%,
+    rgba(10, 10, 10, 0.92) 100%
+  );
   cursor: default; /* no longer clickable */
   transition: none; /* remove hover transition */
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     z-index: 1;
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     mix-blend-mode: screen;
@@ -214,8 +281,14 @@ export const OfferCard = styled.div`
   }
 
   /* disable hover/active effects */
-  &:hover { transform: none; box-shadow: none; border-color: rgba(58, 193, 192, 0.18); }
-  &:active { transform: none; }
+  &:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(58, 193, 192, 0.18);
+  }
+  &:active {
+    transform: none;
+  }
 
   &:focus-visible {
     outline: none;
@@ -239,9 +312,16 @@ export const ModalOverlay = styled.div`
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background:
-    radial-gradient(120% 140% at 10% 20%, rgba(58,193,192,0.10), transparent 43%),
-    radial-gradient(120% 140% at 90% 80%, rgba(90,140,255,0.10), transparent 40%),
+  background: radial-gradient(
+      120% 140% at 10% 20%,
+      rgba(58, 193, 192, 0.1),
+      transparent 43%
+    ),
+    radial-gradient(
+      120% 140% at 90% 80%,
+      rgba(90, 140, 255, 0.1),
+      transparent 40%
+    ),
     rgba(5, 9, 18, 0.62);
   backdrop-filter: blur(3px);
   z-index: 9999;
@@ -258,15 +338,25 @@ export const ModalCard = styled.div`
   max-height: 80vh;
   overflow: auto;
   padding: 2rem clamp(1.25rem, 3vw, 2rem);
-  background:
-    radial-gradient(120% 160% at -10% -20%, rgba(58,193,192,0.12), transparent 35%),
-    radial-gradient(120% 160% at 120% 120%, rgba(90,140,255,0.12), transparent 35%),
-    linear-gradient(180deg, rgba(18,20,34,0.95) 0%, rgba(12,14,24,0.96) 100%);
+  background: radial-gradient(
+      120% 160% at -10% -20%,
+      rgba(58, 193, 192, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      120% 160% at 120% 120%,
+      rgba(90, 140, 255, 0.12),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(18, 20, 34, 0.95) 0%,
+      rgba(12, 14, 24, 0.96) 100%
+    );
   border-radius: 16px;
   border: 1px solid rgba(58, 193, 192, 0.28);
-  box-shadow:
-    0 40px 100px rgba(0,0,0,0.55),
-    0 0 0 1px rgba(255,255,255,0.04) inset;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
   z-index: 10000;
   animation: ${popIn} 160ms ease-out;
   color: #f2f2f2;
@@ -275,17 +365,21 @@ export const ModalCard = styled.div`
   isolation: isolate;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(58,193,192,0.65), rgba(90,140,255,0.45), rgba(255,255,255,0.12));
-    -webkit-mask: 
-      linear-gradient(#000 0 0) content-box, 
+    background: linear-gradient(
+      135deg,
+      rgba(58, 193, 192, 0.65),
+      rgba(90, 140, 255, 0.45),
+      rgba(255, 255, 255, 0.12)
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
-            mask-composite: exclude;
+    mask-composite: exclude;
     pointer-events: none;
     opacity: 0.8;
     z-index: 3; /* keep border sheen above content */
@@ -293,12 +387,15 @@ export const ModalCard = styled.div`
 
   /* Dark overlay above background image for readability */
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background:
-      linear-gradient(180deg, rgba(8, 10, 18, 0.60), rgba(8,10,18,0.58));
+    background: linear-gradient(
+      180deg,
+      rgba(8, 10, 18, 0.6),
+      rgba(8, 10, 18, 0.58)
+    );
     z-index: 1;
     pointer-events: none;
   }
@@ -342,8 +439,13 @@ export const ModalCard = styled.div`
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
     transition: opacity 0.2s ease;
 
-    &:hover { opacity: 0.85; }
-    &:focus-visible { outline: 2px solid rgba(90,140,255,0.8); outline-offset: 3px; }
+    &:hover {
+      opacity: 0.85;
+    }
+    &:focus-visible {
+      outline: 2px solid rgba(90, 140, 255, 0.8);
+      outline-offset: 3px;
+    }
   }
 
   h3 {
@@ -358,17 +460,35 @@ export const ModalCard = styled.div`
     color: #bfe9e8;
     letter-spacing: 0.02em;
   }
-  p { margin: 0.5rem 0 1rem; line-height: 1.65; color: #e8f6f6; }
-  ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
-  li { margin: 0.4rem 0; }
+  p {
+    margin: 0.5rem 0 1rem;
+    line-height: 1.65;
+    color: #e8f6f6;
+  }
+  ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+  }
+  li {
+    margin: 0.4rem 0;
+  }
 
   /* nice-looking scroll */
-  &::-webkit-scrollbar { width: 10px; }
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
   &::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, rgba(58,193,192,0.6), rgba(90,140,255,0.5));
+    background: linear-gradient(
+      180deg,
+      rgba(58, 193, 192, 0.6),
+      rgba(90, 140, 255, 0.5)
+    );
     border-radius: 999px;
   }
-  &::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 999px; }
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 999px;
+  }
 
   @media (max-width: 768px) {
     border-radius: 12px;

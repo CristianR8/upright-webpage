@@ -8,6 +8,7 @@ import {
   HeroActions,
   SecondaryAction,
   Title,
+  FirstLine,
   Emphasis,
 } from "./styles";
 import MaskText from "@/components/Common/MaskText";
@@ -23,7 +24,7 @@ const Message = () => {
         <HeroContent>
           <HeroTextContainer>
             <Title id="message-title">
-              Transforma tus ideas en <br />
+              <FirstLine>Transforma tus ideas en</FirstLine>
               <Emphasis>comunidad</Emphasis>
             </Title>
 

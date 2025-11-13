@@ -55,13 +55,7 @@ export const BurgerMenu = styled.div`
     padding: 0.25rem;
 
     div {
-      position: absolute;
-      background: #000;
-      width: '250px';
-      height: '300px';
-      border-radius: 25px;
-      z-index: 1;
-      top: 50px;
+      display: none;
     }
 
     img {
@@ -70,6 +64,15 @@ export const BurgerMenu = styled.div`
       object-fit: cover;
       width: clamp(1.5rem, 12vw, 2rem);
       height: auto;
+    }
+
+    @media (max-width: 480px) {
+      div {
+        width: 200px;
+        height: 200px;
+        border-radius: 16px;
+        top: 46px;
+      }
     }
   }
 `;
@@ -91,20 +94,78 @@ export const Nav = styled.div`
 
   @media (max-width: 768px) {
     position: absolute;
-    top: 60px;
+    top: 58px;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.9rem;
     align-items: flex-start;
-    right: 120px;
+    right: 12px;
     z-index: 3;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition-delay: 0.5s;
+    transition: all 0.22s cubic-bezier(0.2, 0.9, 0.22, 1);
+    transition-delay: 0s;
+    background: linear-gradient(180deg, rgba(0,0,0,0.90), rgba(0,0,0,0.86));
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    -webkit-backdrop-filter: saturate(120%) blur(8px);
+            backdrop-filter: saturate(120%) blur(8px);
+    min-width: clamp(220px, 60vw, 280px);
+
+    a {
+      position: relative;
+      display: block;
+      font-size: 1.05rem;
+      line-height: 1.3;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.15s ease;
+    }
+
+    a::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      transform: translateY(-50%) scale(0.6);
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+
+    a:hover,
+    a:focus-visible { color: #f5f7ff; }
+    a:hover::before,
+    a:focus-visible::before { opacity: 1; transform: translateY(-50%) scale(1); }
+
+    a + a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(-0.38rem);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
+      opacity: 0.6;
+      pointer-events: none;
+    }
 
     &.active {
       opacity: 1;
       visibility: visible;
+    }
+
+    @media (max-width: 480px) {
+      right: 10px;
+      gap: 0.75rem;
+      padding: 0.95rem 1.1rem;
+      min-width: 210px;
+      a { font-size: 1rem; }
     }
   }
 `;
@@ -139,8 +200,8 @@ export const CallToActions = styled.div`
     right: 50px;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition-delay: 0.5s;
+    transition: all 0.2s cubic-bezier(0.2, 0.9, 0.22, 1);
+    transition-delay: 0s;
 
     &.active {
       opacity: 1;

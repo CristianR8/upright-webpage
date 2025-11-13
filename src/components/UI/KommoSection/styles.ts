@@ -355,6 +355,7 @@ export const ModalContent = styled.div`
   p {
     margin: 0;
     line-height: 1.6;
+    font-size: large;
     color: rgba(239, 246, 255, 0.92);
   }
 

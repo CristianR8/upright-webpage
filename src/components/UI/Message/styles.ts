@@ -182,7 +182,7 @@ export const Title = styled.h1`
   margin: 0.2rem 0 0;
   text-align: center;
   font-size: clamp(1.9rem, 4vw, 4.2rem);
-  font-weight: 900;
+  font-weight: 1000;
   line-height: 1.06;
   letter-spacing: -0.03em;
   text-shadow: 0 4px 18px rgba(0,0,0,0.55);
@@ -195,14 +195,24 @@ export const Title = styled.h1`
   }
 `;
 
+export const FirstLine = styled.span`
+  display: block;
+  white-space: nowrap; /* keep the first phrase on one line */
+`;
+
 export const Emphasis = styled.span`
-  background: var(--cyan);
-  color: var(--cyan);
+  display: block; /* force into its own line */
+  font-size: 1.3em; /* a bit larger */
+  line-height: 1.04;
+  /* animated cyan gradient */
+  background: linear-gradient(90deg, var(--cyan) 0%, var(--cyan) 100%);
+  color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: ${shimmer} 6s linear infinite;
-  background-size: 200% 100%;
+  background-size: 300% 100%;
   position: relative;
+  -webkit-text-fill-color: transparent;
+  will-change: background-position;
 
   &::after {
     content: '';

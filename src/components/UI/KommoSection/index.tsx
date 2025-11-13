@@ -26,7 +26,7 @@ const KommoSection = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <Wrapper id="kommo" style={{ scrollMarginTop: '90px' }}>
+    <Wrapper id="kommo" style={{ scrollMarginTop: "90px" }}>
       <div className="hero-container">
         <div className="partner-badge" aria-hidden="false">
           <img src="/partner/Badge_dark.svg" alt="Partner oficial" />
@@ -135,32 +135,27 @@ const KommoSection = () => {
                   />
                 </div>
                 <ModalContent>
-                  <h3 id="kommo-modal-title">Embudo visual para tu equipo</h3>
+                  <h3 id="kommo-modal-title">
+                    DESCUBRE EL EMBUDO DE VENTAS & MAS HERRAMIENTAS
+                  </h3>
+
                   <p>
-                    Arrastra oportunidades entre etapas, aplica automatizaciones y mantén a
-                    todo el equipo alineado con recordatorios inteligentes.
+                    Este es un embudo multicanal, personalizable que te ayudará
+                    a seguir tareas, organizar tus clientes, y mantener un orden
+                    sobre ellos.
                   </p>
-                  <ul>
-                    <li>
-                      Centraliza leads de WhatsApp, redes y formularios y asígnalos automáticamente al ejecutivo adecuado.
-                    </li>
-                    <li>
-                      Define gatillos que disparan tareas, recordatorios y mensajes cuando un trato avanza o se estanca.
-                    </li>
-                    <li>
-                      Visualiza indicadores en vivo para detectar cuellos de botella y optimizar cada etapa con datos reales.
-                    </li>
-                  </ul>
-                  <p className="smallprint">
-                    Este embudo es totalmente editable: personaliza etapas, responsables y
-                    automatizaciones para replicar tu proceso comercial.
-                  </p>
+
+                  {/* <p className="smallprint">
+                    Este embudo es totalmente editable: personaliza etapas,
+                    responsables y automatizaciones para replicar tu proceso
+                    comercial.
+                  </p> */}
                   <ModalCTA
                     href="https://es.kommo.com/whatsapp-lead-generation/?device=c&placement=&dkinsertion=&gad_campaignid=18583286796"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Explorar Kommo CRM
+                    Pregúntanos por Kommo CRM
                   </ModalCTA>
                 </ModalContent>
               </ModalCard>
