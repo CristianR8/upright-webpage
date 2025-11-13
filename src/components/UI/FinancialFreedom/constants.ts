@@ -1,8 +1,4 @@
 
-import ic_banknotes from '../../../../public/svgs/ic_banknotes.svg';
-import ic_circle_stack from '../../../../public/svgs/ic_circle_stack.svg';
-import ic_arrows_left_right from '../../../../public/svgs/ic_arrows_right_left.svg';
-
 // For desktop
 export const desktopHeaderPhrase = [
   'Nuestro trabajo inicia con',
@@ -38,18 +34,15 @@ export const edges = [
     point: 'Análisis de contexto',
     details:
       'Revisamos datos, procesos y oportunidades de cada caso para detectar fortalezas y retos reales.',
-    icon: ic_banknotes,
   },
   {
     point: 'Estrategia personalizada',
     details:
       'Convertimos los hallazgos en un plan a medida que prioriza los objetivos clave de la marca o empresa.',
-    icon: ic_circle_stack,
   },
   {
     point: 'Implementación alineada',
     details:
       'Ejecutamos cada iniciativa con eficiencia, midiendo su impacto y ajustando para mantener el rumbo correcto.',
-    icon: ic_arrows_left_right,
   },
 ];
