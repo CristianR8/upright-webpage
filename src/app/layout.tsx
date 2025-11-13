@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   title: 'Upright',
   description: '',
   icons: {
-    icon: '/images/u_web.png',
-    shortcut: '/images/u_web.png',
-    apple: '/images/u_web.png',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
   },
 };
 
@@ -19,10 +19,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/images/u_web.png?v=2" sizes="any" />
-        <link rel="apple-touch-icon" href="/images/u_web.png?v=2" />
-      </head>
       <body>
         <Layout>{children}</Layout>
       </body>
