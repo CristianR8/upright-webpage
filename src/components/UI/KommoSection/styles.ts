@@ -31,7 +31,7 @@ export const Wrapper = styled.section`
   grid-template-columns: 1fr; /* avoid shrink-to-fit */
   padding: clamp(3.5rem, 10vw, 6.5rem) 1rem clamp(5rem, 12vw, 7.5rem);
   /* match Message/Hero height on medium+ screens */
-  min-height: 100svh;
+  min-height: 90svh;
   color: var(--white);
 
   background: linear-gradient(180deg, var(--Background) 40%, var(--blue) 100%);
