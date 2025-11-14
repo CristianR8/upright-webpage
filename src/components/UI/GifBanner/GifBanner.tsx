@@ -26,8 +26,42 @@ function addStylesheet(href: string): HTMLLinkElement {
 export default function GifBanner() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [html, setHtml] = useState<string>("");
+  const [shouldInit, setShouldInit] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    const node = containerRef.current;
+    if (!node) return;
+
+    // Si el navegador no soporta IntersectionObserver, inicializamos de una vez
+    if (typeof window !== "undefined" && !("IntersectionObserver" in window)) {
+      setShouldInit(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setShouldInit(true);
+          observer.disconnect();
+        }
+      },
+      {
+        // Empieza a cargar un poco antes de que sea totalmente visible
+        threshold: 0.25,
+        rootMargin: "160px 0px",
+      }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldInit) return;
+
     let cssLink: HTMLLinkElement | null = null;
     let scripts: HTMLScriptElement[] = [];
     let isCancelled = false;
@@ -59,6 +93,10 @@ export default function GifBanner() {
       // Ahora tu coreografía (main.js) que usa TweenMax/TimelineMax
       const core = await loadScript("/animations/main.js");
       scripts.push(core);
+
+      if (!isCancelled) {
+        setIsLoaded(true);
+      }
     })();
 
     // cleanup
@@ -69,13 +107,45 @@ export default function GifBanner() {
       // Limpia el HTML inyectado
       if (containerRef.current) containerRef.current.innerHTML = "";
     };
-  }, []);
+  }, [shouldInit]);
 
   return (
     <div
       ref={containerRef}
-      // Inyectamos el HTML tal cual (como viene de tu archivo)
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+      // Reservamos siempre el espacio del banner para evitar saltos de layout
+      style={{
+        minHeight: "320px",
+        width: "min(320px, 80vw)",
+        margin: "0 auto",
+        position: "relative",
+      }}
+    >
+      {/* Placeholder estático para que no se vea "vacío" antes de cargar */}
+      {!isLoaded && (
+        <div
+          style={{
+            width: "100%",
+            aspectRatio: "1 / 1",
+            borderRadius: "50%",
+            border: "2px solid var(--cyan)",
+            background:
+              "radial-gradient(circle at 50% 75%, var(--cyan) 0%, transparent 65%)",
+            boxShadow: "0 0 40px rgba(58,193,192,0.28)",
+          }}
+        />
+      )}
+
+      {/* Contenido real de la animación */}
+      <div
+        // Inyectamos el HTML tal cual (como viene de tu archivo)
+        dangerouslySetInnerHTML={{ __html: html }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          opacity: isLoaded ? 1 : 0,
+          transition: "opacity 420ms ease-out",
+        }}
+      />
+    </div>
   );
 }
