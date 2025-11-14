@@ -202,7 +202,7 @@ export const serviceModals: Record<ServiceModalKey, {
     benefits: [
        'Alta tasa de apertura',
        'Medición y optimización',
-       'Rapidez y eficienciaoperativa',
+       'Rapidez y eficiencia operativa',
        'Versatilidad y variedad de formatos'
     ],
   },
@@ -215,8 +215,8 @@ export const serviceModals: Record<ServiceModalKey, {
     benefits: [
      'Gestión profesional multicanal',
      'Creatividad y formatos innovadores',
-     'Estrategia de contenidos y calendario editorial',
-     'Análisis de datos y optimización continua'
+     'Análisis de datos y optimización continua',
+     'Estrategia de contenidos y calendario editorial',  
     ],
   },
   branding: {
