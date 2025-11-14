@@ -1,14 +1,16 @@
-import Layout from '@/components/Layout';
-import './globals.css';
-import type { Metadata } from 'next';
+import Layout from "@/components/Layout";
+import "./globals.css";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Upright',
-  description: '',
+  title: "Upright",
+  description: "",
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico',
+    icon: [
+      { url: "/favicon_v2.ico", type: "image/x-icon" },
+      { url: "/favicon_v2.png", type: "image/png" },
+    ],
+    apple: "/favicon_v2.png",
   },
 };
 
