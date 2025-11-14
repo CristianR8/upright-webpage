@@ -350,6 +350,7 @@ export const ModalContent = styled.div`
   h3 {
     margin: 0;
     font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    text-align: center;
   }
 
   p {

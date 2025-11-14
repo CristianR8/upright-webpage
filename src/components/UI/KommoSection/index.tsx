@@ -136,7 +136,7 @@ const KommoSection = () => {
                 </div>
                 <ModalContent>
                   <h3 id="kommo-modal-title">
-                    DESCUBRE EL EMBUDO DE VENTAS & MAS HERRAMIENTAS
+                    DESCUBRE EL EMBUDO DE VENTAS & MÁS HERRAMIENTAS
                   </h3>
 
                   <p>
@@ -151,7 +151,7 @@ const KommoSection = () => {
                     comercial.
                   </p> */}
                   <ModalCTA
-                    href="https://es.kommo.com/whatsapp-lead-generation/?device=c&placement=&dkinsertion=&gad_campaignid=18583286796"
+                    href="https://wa.me/message/BDRPYGZON5JOL1"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
