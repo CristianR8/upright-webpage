@@ -65,15 +65,22 @@ export default function GifBanner() {
     let isCancelled = false;
 
     (async () => {
-      // 1) Cargar el HTML desde /public/animations/gif-banner.html
+      // 1) Cargar el HTML desde /public/animations/index.html
       const res = await fetch("/animations/index.html");
       const markup = await res.text();
       if (isCancelled) return;
 
-      setHtml(markup); // esto pinta el HTML en pantalla
-
-      // 2) Inyectar el CSS (styles.css)
+      // 2) Inyectar el CSS (styles.css) y esperar a que esté listo
       cssLink = addStylesheet("/animations/styles.css");
+      await new Promise<void>((resolve) => {
+        if (!cssLink) return resolve();
+        cssLink.onload = () => resolve();
+        cssLink.onerror = () => resolve();
+      });
+      if (isCancelled) return;
+
+      // Solo pintamos el HTML cuando el CSS ya está cargado, para evitar el cohete gigante sin estilos
+      setHtml(markup);
 
       // 3) Cargar GSAP 2 (TweenMax) y luego tu main.js (en ese orden)
       //    Usa UNA de estas dos opciones:
