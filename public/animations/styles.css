@@ -13,13 +13,10 @@
   height: 300px;
   border-radius: 50%;
   border: 2px solid var(--blue);
-  margin: auto;
-  margin-bottom: 2.5rem;
   overflow: hidden;
   -webkit-mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC");
   backface-visibility: hidden;
   background: radial-gradient(circle at bottom, var(--blue) 0%,  var(--Background) 60%);
-  margin-bottom: 7rem;
 }
 
 /* Estrellas fijas */
@@ -29,6 +26,7 @@
   height: 10px;
   top: 37%;
   left: 31%;
+
 }
 .star::before,
 .star::after {
@@ -100,6 +98,7 @@
   transform: rotate(135deg);
   margin-top: 20px;
   animation: flicker infinite 1s alternate ease-in-out;
+
 }
 .fire:after {
   content: "";

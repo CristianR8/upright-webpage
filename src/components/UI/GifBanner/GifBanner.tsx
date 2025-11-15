@@ -116,9 +116,9 @@ export default function GifBanner() {
       // Reservamos siempre el espacio del banner para evitar saltos de layout
       style={{
         width: "min(320px, 80vw)",
-        aspectRatio: "1 / 1", // fuerza contenedor cuadrado
         margin: "0 auto",
-        overflow: "hidden",
+        marginBottom: "5rem", 
+        overflow: "visible", 
       }}
       // Inyectamos el HTML tal cual (como viene de tu archivo)
       dangerouslySetInnerHTML={{ __html: html }}
