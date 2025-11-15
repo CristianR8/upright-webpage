@@ -118,7 +118,7 @@ export default function GifBanner() {
       // Reservamos siempre el espacio del banner para evitar saltos de layout
       style={{
         aspectRatio: "1 / 1",
-        margin: "0 auto 5rem",
+        margin: "1rem auto 5rem",
         overflow: "hidden",
         borderRadius: "50%",
         border: "2px solid var(--blue)",
