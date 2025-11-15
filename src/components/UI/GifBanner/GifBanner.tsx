@@ -27,6 +27,7 @@ export default function GifBanner() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [html, setHtml] = useState<string>("");
   const [shouldInit, setShouldInit] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const node = containerRef.current;
@@ -81,6 +82,7 @@ export default function GifBanner() {
 
       // Solo pintamos el HTML cuando el CSS ya está cargado, para evitar el cohete gigante sin estilos
       setHtml(markup);
+      setIsVisible(true);
 
       // 3) Cargar GSAP 2 (TweenMax) y luego tu main.js (en ese orden)
       //    Usa UNA de estas dos opciones:
@@ -115,10 +117,16 @@ export default function GifBanner() {
       ref={containerRef}
       // Reservamos siempre el espacio del banner para evitar saltos de layout
       style={{
-        width: "min(320px, 80vw)",
-        margin: "0 auto",
-        marginBottom: "5rem", 
-        overflow: "visible", 
+        aspectRatio: "1 / 1",
+        margin: "0 auto 5rem",
+        overflow: "hidden",
+        borderRadius: "50%",
+        border: "2px solid var(--blue)",
+        background:
+          "radial-gradient(circle at 50% 80%, var(--blue) 0%, transparent 65%)",
+        boxShadow: "0 0 40px rgba(58,193,192,0.28)",
+        opacity: isVisible ? 1 : 0,
+        transition: "opacity 320ms ease-out",
       }}
       // Inyectamos el HTML tal cual (como viene de tu archivo)
       dangerouslySetInnerHTML={{ __html: html }}
