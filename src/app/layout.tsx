@@ -3,8 +3,19 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://uprightic.com"),
   title: "Upright",
-  description: "",
+  applicationName: "Upright",
+  description:
+    "En Upright conectamos ideas con personas. Impulsamos tu marca con experiencias digitales completas y estratégicas.",
+  openGraph: {
+    title: "Upright",
+    description:
+      "En Upright conectamos ideas con personas. Impulsamos tu marca con experiencias digitales completas y estratégicas.",
+    url: "https://uprightic.com",
+    siteName: "Upright",
+    type: "website",
+  },
   icons: {
     icon: [
       { url: "/favicon_v2.ico", type: "image/x-icon" },
@@ -20,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body>
         <Layout>{children}</Layout>
       </body>
