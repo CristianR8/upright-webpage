@@ -47,7 +47,6 @@ export default function GifBanner() {
         }
       },
       {
-        // Empieza a cargar un poco antes de que sea totalmente visible
         threshold: 0.25,
         rootMargin: "160px 0px",
       }
