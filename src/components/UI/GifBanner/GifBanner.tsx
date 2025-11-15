@@ -27,7 +27,6 @@ export default function GifBanner() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [html, setHtml] = useState<string>("");
   const [shouldInit, setShouldInit] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const node = containerRef.current;
@@ -93,10 +92,6 @@ export default function GifBanner() {
       // Ahora tu coreografía (main.js) que usa TweenMax/TimelineMax
       const core = await loadScript("/animations/main.js");
       scripts.push(core);
-
-      if (!isCancelled) {
-        setIsLoaded(true);
-      }
     })();
 
     // cleanup
@@ -114,38 +109,13 @@ export default function GifBanner() {
       ref={containerRef}
       // Reservamos siempre el espacio del banner para evitar saltos de layout
       style={{
-        minHeight: "320px",
         width: "min(320px, 80vw)",
+        aspectRatio: "1 / 1", // fuerza contenedor cuadrado
         margin: "0 auto",
-        position: "relative",
+        overflow: "hidden",
       }}
-    >
-      {/* Placeholder estático para que no se vea "vacío" antes de cargar */}
-      {!isLoaded && (
-        <div
-          style={{
-            width: "100%",
-            aspectRatio: "1 / 1",
-            borderRadius: "50%",
-            border: "2px solid var(--cyan)",
-            background:
-              "radial-gradient(circle at 50% 75%, var(--cyan) 0%, transparent 65%)",
-            boxShadow: "0 0 40px rgba(58,193,192,0.28)",
-          }}
-        />
-      )}
-
-      {/* Contenido real de la animación */}
-      <div
-        // Inyectamos el HTML tal cual (como viene de tu archivo)
-        dangerouslySetInnerHTML={{ __html: html }}
-        style={{
-          position: "absolute",
-          inset: 0,
-          opacity: isLoaded ? 1 : 0,
-          transition: "opacity 420ms ease-out",
-        }}
-      />
-    </div>
+      // Inyectamos el HTML tal cual (como viene de tu archivo)
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
   );
 }
