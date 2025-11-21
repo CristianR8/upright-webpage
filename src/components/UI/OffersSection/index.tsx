@@ -26,6 +26,7 @@ import {
   serviceModals,
   type ServiceModalKey,
 } from "./constants";
+import uIsotipo from "@/../public/images/u_isotipo.png";
 import dynamic from "next/dynamic";
 const GifBanner = dynamic(() => import("@/components/UI/GifBanner/GifBanner"), {
   ssr: false, // importante
@@ -141,36 +142,15 @@ const OffersSection = () => {
                 >
                   ×
                 </button>
-                {/* Background image from the matching service */}
-                {(() => {
-                  const match = offers.find((o) => {
-                    const t = o.title.toLowerCase();
-                    if (open === "web") return /desarrollo/.test(t);
-                    if (open === "drones") return /dron/.test(t);
-                    if (open === "ads") return /(google|ads|pauta)/.test(t);
-                    if (open === "metaPortfolio") return /(portafolio)/.test(t);
-                    if (open === "crm") return /(crm|kommo)/.test(t);
-                    if (open === "automation") return /automat/.test(t);
-                    if (open === "broadcast")
-                      return /(lista|difusi[oó]n|whatsapp)/.test(t);
-                    if (open === "optimize")
-                      return /(optimización|plataformas)/.test(t);
-                    if (open === "communication")
-                      return /(comunicaci[oó]n|redes|social)/.test(t);
-                    if (open === "branding") return /branding/.test(t);
-                    return false;
-                  });
-                  return match ? (
-                    <Image
-                      className="modal-bg"
-                      src={match.illustration}
-                      alt=""
-                      fill
-                      sizes="(max-width: 768px) 92vw, 880px"
-                      priority
-                    />
-                  ) : null;
-                })()}
+                {/* Fondo común para todos los modales de servicios */}
+                <Image
+                  className="modal-bg"
+                  src={uIsotipo}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 92vw, 880px"
+                  priority
+                />
                 <div className="modal-content">
                   <h3>{serviceModals[open].title}</h3>
                   {serviceModals[open].intro.map((p, i) => (
