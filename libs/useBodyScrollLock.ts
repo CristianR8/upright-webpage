@@ -41,13 +41,6 @@ const lockScroll = () => {
   body.style.overflow = "hidden";
   (body.style as any).scrollSnapType = "none";
 
-  // Keep layout stable and freeze page at current position
-  body.style.position = "fixed";
-  body.style.top = `-${scrollTopSnapshot}px`;
-  body.style.left = "0";
-  body.style.right = "0";
-  body.style.width = "100%";
-
   isScrollLocked = true;
 };
 

@@ -2,30 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// Utilidad pequeña para cargar un script y esperar a que termine
-function loadScript(src: string): Promise<HTMLScriptElement> {
-  return new Promise((resolve, reject) => {
-    const s = document.createElement("script");
-    s.src = src;
-    s.async = true;
-    s.onload = () => resolve(s);
-    s.onerror = () => reject(new Error(`Error cargando script: ${src}`));
-    document.body.appendChild(s);
-  });
-}
-
-// Utilidad para inyectar <link rel="stylesheet">
-function addStylesheet(href: string): HTMLLinkElement {
-  const l = document.createElement("link");
-  l.rel = "stylesheet";
-  l.href = href;
-  document.head.appendChild(l);
-  return l;
-}
-
 export default function GifBanner() {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [html, setHtml] = useState<string>("");
+  const [srcDoc, setSrcDoc] = useState<string>("");
   const [shouldInit, setShouldInit] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -61,54 +40,59 @@ export default function GifBanner() {
   useEffect(() => {
     if (!shouldInit) return;
 
-    let cssLink: HTMLLinkElement | null = null;
-    let scripts: HTMLScriptElement[] = [];
     let isCancelled = false;
 
     (async () => {
-      // 1) Cargar el HTML desde /public/animations/index.html
-      const res = await fetch("/animations/index.html");
-      const markup = await res.text();
-      if (isCancelled) return;
+      try {
+        const res = await fetch("/animations/index.html");
+        const markup = await res.text();
+        if (isCancelled) return;
 
-      // 2) Inyectar el CSS (styles.css) y esperar a que esté listo
-      cssLink = addStylesheet("/animations/styles.css");
-      await new Promise<void>((resolve) => {
-        if (!cssLink) return resolve();
-        cssLink.onload = () => resolve();
-        cssLink.onerror = () => resolve();
-      });
-      if (isCancelled) return;
-
-      // Solo pintamos el HTML cuando el CSS ya está cargado, para evitar el cohete gigante sin estilos
-      setHtml(markup);
-      setIsVisible(true);
-
-      // 3) Cargar GSAP 2 (TweenMax) y luego tu main.js (en ese orden)
-      //    Usa UNA de estas dos opciones:
-
-      // Opción A: CDN de TweenMax (recomendada si no lo copiaste en /public)
-      const tween = await loadScript(
-        "https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"
-      );
-      scripts.push(tween);
-
-      // Opción B (alternativa): si copiaste TweenMax.min.js a /public/animations/
-      // const tween = await loadScript("/animations/TweenMax.min.js");
-      // scripts.push(tween);
-
-      // Ahora tu coreografía (main.js) que usa TweenMax/TimelineMax
-      const core = await loadScript("/animations/main.js");
-      scripts.push(core);
+        const doc = `<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/animations/styles.css" />
+  <style>
+    :root {
+      --Background: #000000;
+      --white: #fff;
+      --gray: #f2f2f2;
+      --cyan: #3ac1c0;
+      --blue: #2e2d73;
+      --indigo: #0e0142;
+    }
+    /* eliminar barras de scroll dentro del iframe */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+    .artboard {
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+${markup}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+<script src="/animations/main.js"></script>
+</body>
+</html>`;
+        setSrcDoc(doc);
+        setIsVisible(true);
+      } catch (e) {
+        // si algo falla, simplemente dejamos el banner oculto
+        console.error("No se pudo cargar la animación", e);
+      }
     })();
 
-    // cleanup
     return () => {
       isCancelled = true;
-      if (cssLink) document.head.removeChild(cssLink);
-      scripts.forEach((s) => s.parentNode?.removeChild(s));
-      // Limpia el HTML inyectado
-      if (containerRef.current) containerRef.current.innerHTML = "";
     };
   }, [shouldInit]);
 
@@ -128,8 +112,27 @@ export default function GifBanner() {
         opacity: isVisible ? 1 : 0,
         transition: "opacity 320ms ease-out",
       }}
-      // Inyectamos el HTML tal cual (como viene de tu archivo)
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+    >
+      {srcDoc ? (
+        <iframe
+          title="Gif Banner"
+          srcDoc={srcDoc}
+          loading="lazy"
+          scrolling="no"
+          sandbox="allow-scripts allow-same-origin"
+          aria-hidden="true"
+          style={{
+            width: "100%",
+            height: "100%",
+            border: "none",
+            display: "block",
+            borderRadius: "50%",
+            overflow: "hidden",
+            backgroundColor: "transparent",
+            pointerEvents: "none", // allow page scroll to pass through
+          }}
+        />
+      ) : null}
+    </div>
   );
 }
