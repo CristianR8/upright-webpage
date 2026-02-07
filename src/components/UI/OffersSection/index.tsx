@@ -76,13 +76,12 @@ const OffersSection = () => {
               const openForOffer = () => {
                 const t = offer.title.toLowerCase();
                 if (/desarrollo/.test(t)) setOpen("web");
+                else if (/influencer/.test(t)) setOpen("influencer");
                 else if (/dron/.test(t)) setOpen("drones");
                 else if (/(google|ads|pauta)/.test(t)) setOpen("ads");
                 else if (/(portafolio)/.test(t)) setOpen("metaPortfolio");
                 else if (/(crm|kommo)/.test(t)) setOpen("crm");
                 else if (/automat/.test(t)) setOpen("automation");
-                else if (/(lista|difusi[oó]n|whatsapp)/.test(t))
-                  setOpen("broadcast");
                 else if (/(optimización|plataformas)/.test(t))
                   setOpen("optimize");
                 else if (/(comunicaci[oó]n|redes|social)/.test(t))
@@ -142,15 +141,6 @@ const OffersSection = () => {
                 >
                   ×
                 </button>
-                {/* Fondo común para todos los modales de servicios */}
-                <Image
-                  className="modal-bg"
-                  src={uIsotipo}
-                  alt=""
-                  fill
-                  sizes="(max-width: 768px) 92vw, 880px"
-                  priority
-                />
                 <div className="modal-content">
                   <h3>{serviceModals[open].title}</h3>
                   {serviceModals[open].intro.map((p, i) => (

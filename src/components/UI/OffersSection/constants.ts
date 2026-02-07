@@ -35,9 +35,9 @@ export const offers = [
   },
   {
     illustration: service2,
-    title: 'Tomas Aéreas con Drones',
+    title: 'Marketing de Influencers',
     details:
-      'Capturamos imágenes y videos aéreos profesionales que potencian la narrativa visual de tu marca.',
+      'Organizamos campañas con creadores de contenido alineadas a los objetivos de tu marca.',
   },
   {
     illustration: service3,
@@ -64,15 +64,15 @@ export const offers = [
   },
   {
     illustration: service7,
-    title: 'Comunicación Digital',
+    title: 'Tomas Aéreas con Drones',
     details:
-      'Gestionamos redes sociales con contenido estratégico y storytelling que construye comunidad.',
+      'Capturamos imágenes y videos aéreos profesionales que potencian la narrativa visual de tu marca.',
   },
   {
     illustration: service8,
-    title: 'Listas de Difusión en WhatsApp Business',
+    title: 'Comunicación Digital',
     details:
-      'Segmentamos audiencias y diseñamos mensajes masivos efectivos para mantener a tu público informado.',
+      'Gestionamos redes sociales con contenido estratégico y storytelling que construye comunidad.',
   },
   {
     illustration: service9,
@@ -89,7 +89,17 @@ export const offers = [
 ];
 
 // -------- Modal Content per service --------
-export type ServiceModalKey = 'web' | 'drones' | 'ads' | 'crm' | 'metaPortfolio' | 'automation' | 'optimize' | 'broadcast' | 'communication' | 'branding';
+export type ServiceModalKey =
+  | 'web'
+  | 'influencer'
+  | 'drones'
+  | 'ads'
+  | 'crm'
+  | 'metaPortfolio'
+  | 'automation'
+  | 'optimize'
+  | 'communication'
+  | 'branding';
 
 export const serviceModals: Record<ServiceModalKey, {
   title: string;
@@ -109,6 +119,20 @@ export const serviceModals: Record<ServiceModalKey, {
       'Diseño único y exclusivo',
       'Experiencia de usuario mejorada',
       'Optimización para SEO y velocidad'
+    ],
+  },
+  influencer: {
+    title: 'Marketing de Influencers',
+    intro: [
+      'Organizamos campañas de marketing con creadores de contenido principalmente en Youtube donde ya tenemos una comunidad y audiencia activas, según el objetivo de la marca o empresa.'
+    ],
+    benefitsTitle: 'Ventajas de hacer Marketing de Influencers',
+    benefits: [
+      'Costo-eficiencia',
+      'Credibilidad inmediata',
+      'Engagement y alcance',
+      'Resultados rápidos y escalables',
+      'Alcance auténtico y segmentado'
     ],
   },
   drones: {
@@ -191,19 +215,6 @@ export const serviceModals: Record<ServiceModalKey, {
       'Precisión de la información comercial',
       'Mayor visibilidad y posicionamiento local',
       'Aprovechamiento de recursos visuales y publicaciones'
-    ],
-  },
-  broadcast: {
-    title: 'Lista de Difusión WhatsApp Business',
-    intro: [
-     'Implementamos y gestionamos Listas de Difusión en WhatsApp Business como canal clave para la comunicación directa, personalizada y eficiente con tus clientes enfocado en ventas o marketing.',
-    ],
-    benefitsTitle: 'Principales beneficios',
-    benefits: [
-       'Alta tasa de apertura',
-       'Medición y optimización',
-       'Rapidez y eficiencia operativa',
-       'Versatilidad y variedad de formatos'
     ],
   },
   communication: {
